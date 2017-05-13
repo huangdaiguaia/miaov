@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>带缩略图的图片切换效果</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#pic{
+			width: 390px;
+			height: 480px;
+			border:1px solid #ccc;
+			margin:0 auto;
+			position: relative;
+		}
+		img{
+			width: 390px;
+			height: 480px;
+		}
+		span,p{
+			position: absolute;
+			left:0;
+			display: block;
+			width: 390px;
+			height: 30px;
+			line-height: 30px;
+			background: #000;
+			color:#fff;
+			text-align: center;
+		}
+		span{
+			top: 0;
+		}
+		p{
+			bottom: 0;
+		}
+		ul{
+			position: absolute;
+			bottom:40px;
+			width: 390px;
+			/*text-align: center;*/
+			margin-left: 158px;
+		}
+		ul li{
+			width: 12px;
+			height: 12px;
+			border-radius: 12px;
+			background: #ccc;
+			float: left;
+			margin-right: 10px;
+			position: relative;
+		}
+		.active{
+			background: #0ff;
+		}
+		a{
+			position: absolute;
+			top:230px;
+			width: 50px;
+			height: 50px;
+			background: #fff;
+			display: inline-block;
+			color: #000;
+			font-size: 20px;
+			text-decoration: none;
+			line-height: 50px;
+			text-align: center;
+			filter:alpha(opacity:80); opacity:0.8; 
+		}
+		a:hover{
+			filter:alpha(opacity:30);opacity: 0.3;
+		}
+		.prev{
+			left: 10px;
+		}
+		.next{
+			right: 10px;
+		}
+		ul li img{
+			width: 100px;
+			height: 80px;
+			position: absolute;
+			bottom: 15px;
+			left: -50px;
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oP=document.getElementsByTagName('p')[0];
+			var oSpan=document.getElementsByTagName('span')[0];
+			var oBig=document.getElementById('big');
+			var oUl=document.getElementsByTagName('ul')[0];
+			var aLi=document.getElementsByTagName('li');
+			var aA=document.getElementsByTagName('a');
+			var aImg=oUl.getElementsByTagName('img');
+
+			var aUrl=["img/1.png","img/2.png","img/3.png","img/4.png"];
+			var aText=["ni","wo","ta","是一家"];
+			var num=0;
+
+			// 动态添加li
+			// for(var i=0;i<aText.length;i++){
+			// 	oUl.innerHTML+="<li><img src="" alt=""></li>";
+			// }
+			// alert(aLi.length);
+			// oUl.innerHTML="";
+			// alert(aLi.length);
+
+			// 初始化
+			function fnTab(num){
+				oBig.src=aUrl[num];
+				oP.innerHTML=aText[num];
+				oSpan.innerHTML=num+1+"/"+aText.length;
+				// oUl.innerHTML="";
+				// for(var i=0;i<aText.length;i++){
+				// 	oUl.innerHTML+="<li></li>";
+				// }
+				// var aLi=document.getElementsByTagName('li');
+				aLi[num].className="active";
+			}
+			fnTab(num);
+
+			// 当点击li发生
+			function fnOnClick(){
+				for(var i=0;i<aText.length;i++){
+					aLi[i].index=i;
+					aLi[i].onclick=function(){
+						for(var i=0;i<aLi.length;i++){
+							aLi[i].className="";
+						}
+						fnTab(this.index);
+					}
+				}
+			}
+			fnOnClick();
+			// 当hover时li发生
+			for(var i=0;i<aText.length;i++){
+				aLi[i].index=i;
+				aLi[i].onmouseover=function(){
+					aImg[this.index].style.display="block";
+				}
+
+				aLi[i].onmouseout=function(){
+					aImg[this.index].style.display="none";
+				}
+			}
+
+			// prev next
+			aA[0].onclick=function(){
+				num--;
+				if(num==-1){
+					num=aUrl.length-1;
+				}
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].className="";
+				}
+				fnTab(num);
+				// fnOnClick();
+			}
+			aA[1].onclick=function(){
+				num++;
+				if(num==aUrl.length){
+					num=0;
+				}
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].className="";
+				}
+				fnTab(num);
+				// fnOnClick();
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div id="pic">
+		<span>多啊好</span>
+		<p>介绍</p>
+		<img id="big" src="img/loader_ico.gif" alt="图片">
+		<a class="prev" href="#">&lt</a>
+		<a class="next" href="#">&gt</a>
+		<ul>
+			<li><img src="img/1.png" alt=""></li>
+			<li><img src="img/2.png" alt=""></li>
+			<li><img src="img/3.png" alt=""></li>
+			<li><img src="img/4.png" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>

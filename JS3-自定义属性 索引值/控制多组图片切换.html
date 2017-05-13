@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>控制多组图片切换</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#pic{
+			width: 1000px;
+			margin: -0px auto;
+		}
+		#left{
+			width: 580px;
+			height: 435px;
+			float: left;
+		}
+		#left img{
+			width: 580px;
+			height: 435px;
+		}
+		#right{
+			width: 344px;
+			height: 435px;
+			float: right;
+		}
+		#right img{
+			height: 435px;
+		}
+		button,p{
+			margin:10px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var aBtn=document.getElementsByTagName('button');
+			var aImg=document.getElementsByTagName('img');
+			var aP=document.getElementsByTagName('p');
+			var aUrl1=["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+			var aUrl2=["img/1.png","img/2.png","img/3.png"];
+			var num1=0;
+			var num2=0; 
+
+			//aUrl1[i].index=i; 因为数组是对象object,所以也可以添加自定义属性
+
+			function fnTab1(num1){
+				aImg[0].src=aUrl1[num1];
+				aP[0].innerHTML=num1+1+"/"+aUrl1.length;
+			} 
+			fnTab1(num1);
+			function fnTab2(num2){
+				aP[1].innerHTML=num2+1+"/"+aUrl2.length;
+				aImg[1].src=aUrl2[num2];
+			} 
+			fnTab2(num2);
+
+			function tabNext1(){
+				num1++;
+				if(num1==aUrl1.length){
+					num1=0;
+					fnTab1(num1);
+				}else{
+					fnTab1(num1);
+				}
+			}
+
+			function tabNext2(){
+				num2++;
+				if(num2==aUrl2.length){
+					num2=0;
+					fnTab2(num2);
+				}else{
+					fnTab2(num2);
+				}
+			}
+
+			// 下一组
+			aBtn[1].onclick=function(){
+				tabNext2();//0,1,2,3=>0
+
+				tabNext1();//0,1,2,3,4=>0
+			}
+			// 上一组
+			aBtn[0].onclick=function(){
+				num2--;
+				if(num2==-1){
+					num2=aUrl2.length-1;
+					fnTab2(num2);
+				}else{
+					fnTab2(num2);
+				}//0,1,2,3=>0
+
+				num1--;
+				if(num1==-1){
+					num1=aUrl1.length-1;
+					fnTab1(num1);
+				}else{
+					fnTab1(num1);
+				}//0,1,2,3,4=>0
+			}
+			// 当点击图片时:
+			aImg[0].onclick=function(){
+				tabNext1();//0,1,2,3,4=>0
+			}
+			aImg[1].onclick=function(){
+				tabNext2();//0,1,2,3=>0
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="pic">
+		<div id="btn">
+			<button>上一组</button>
+			<button>下一组</button>
+		</div>
+		<div id="left">
+			<img src="" alt="">
+			<p>?/?</p>
+		</div>
+		<div id="right">
+			<img src="" alt="">
+			<p>?/?</p>
+		</div>
+	</div>
+</body>
+</html>

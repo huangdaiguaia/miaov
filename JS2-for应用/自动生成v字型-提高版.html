@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动生成11v个li</title>
+  <style>
+    li{
+      width: 50px;
+      height: 50px;
+      background: #ccc;
+      list-style: none;
+      /*float: left;*/
+      position: absolute;
+      line-height: 50px;
+      text-align: center;
+      margin-left: 10px;
+    }
+    li.one{
+      background: red;
+    }
+    li.two{
+      background: yellow;
+    }
+    li.three{
+      background: blue;
+    }
+    li.four{
+      background: green;
+    }
+
+    ul{
+      position: relative;
+    }
+  </style>
+  <script>
+    window.onload=function(){
+      var oInput=document.getElementsByTagName('input')[0];
+      var oUl=document.getElementsByTagName('ul')[0];
+      var aLi=document.getElementsByTagName('li');
+      var j=0;
+      var num=0;
+      var onOff=true;
+
+      oInput.onclick=function(){
+
+        if(onOff){
+          // 生成li
+          for(var i=0;i<11;i++){
+            oUl.innerHTML += '<li>' + i + '</li>';
+          }
+
+          // 背景颜色
+          for(var i=0;i<aLi.length;i++){
+            if(i%4==0){
+              aLi[i].className="one";
+            }else if(i%4==1){
+              aLi[i].className="two";
+            }else if(i%4==2){
+              aLi[i].className="three";
+            }else if(i%4==3){
+              aLi[i].className="four";
+            }
+          }
+          
+        }
+        onOff=false;
+
+        // 调用函数
+        if(num==0){
+          fnTab1();
+        }else if(num==1){
+          fnTab2();
+        }else if(num==2){
+          fnTab3();
+        }else if(num==3){
+          fnTab4();
+        }
+        num++;
+        // fnTab2();
+      };
+
+      function fnTab1(){
+        for(var i=0;i<aLi.length;i++){
+          if(i<=aLi.length/2){
+            aLi[i].style.left=i*60+'px';
+            aLi[i].style.top=(5-i)*60+'px';
+          }else{
+            aLi[i].style.left=i*60+'px';
+            aLi[i].style.top=(i-5)*60+'px';
+          }
+          
+        }
+      }
+      // fnTab1();
+
+      function fnTab2(){
+        for(var i=0;i<aLi.length;i++){
+          if(i<=aLi.length/2){
+            aLi[i].style.left=i*60+'px';
+            aLi[i].style.top=i*60+'px';
+          }else{
+            aLi[i].style.left=(10-i)*60+'px';
+            aLi[i].style.top=i*60+'px';
+          }
+          
+        }
+      }
+      // fnTab2();
+
+      function fnTab3(){
+        for(var i=0;i<aLi.length;i++){
+          if(i<=aLi.length/2){
+            aLi[i].style.left=i*60+'px';
+            aLi[i].style.top=i*60+'px';
+          }else{
+            aLi[i].style.left=i*60+'px';
+            aLi[i].style.top=(10-i)*60+'px';
+          }
+          
+        }
+      }
+      // fnTab3();
+
+      function fnTab4(){
+        for(var i=0;i<aLi.length;i++){
+          if(i<=aLi.length/2){
+            aLi[i].style.left=(5-i)*60+'px';
+            aLi[i].style.top=i*60+'px';
+          }else{
+            aLi[i].style.left=(i-5)*60+'px';
+            aLi[i].style.top=i*60+'px';
+          }
+          
+        }
+      }
+      // fnTab4();
+
+    }
+  </script>
+</head>
+<body> 
+	<input type="button" value="自动生成11v个li">
+  <ul></ul>
+</body>
+</html>

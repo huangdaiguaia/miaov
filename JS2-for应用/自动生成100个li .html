@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动生成100个li</title>
+  <style>
+    li{
+      width: 50px;
+      height: 50px;
+      background: #ccc;
+      list-style: none;
+      float: left;
+      line-height: 50px;
+      text-align: center;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+    li.one{
+      background: red;
+    }
+    li.two{
+      background: yellow;
+    }
+    li.three{
+      background: blue;
+    }
+    li.four{
+      background: green;
+    }
+
+    ul{
+      width: 600px;
+    }
+  </style>
+  <script>
+    window.onload=function(){
+      var oInput=document.getElementsByTagName('input')[0];
+      var oUl=document.getElementsByTagName('ul')[0];
+      var aLo=document.getElementsByTagName('li');
+      var j=0;
+
+      oInput.onclick=function(){
+        for(var i=0;i<100;i++){
+          oUl.innerHTML += '<li>' + i + '</li>';
+
+          j=i%4;
+          if(j==0){
+            aLo[i].className="one";
+          }else if(j==1){
+            aLo[i].className="two";
+          }else if(j==2){
+            aLo[i].className="three";
+          }else if(j==3){
+            aLo[i].className="four";
+          }
+        }
+
+      };
+    }
+  </script>
+</head>
+<body> 
+	<input type="button" value="自动生成100个li">
+  <ul></ul>
+</body>
+</html>

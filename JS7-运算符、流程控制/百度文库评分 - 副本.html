@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度文库评分</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		li{
+			list-style: none;
+		}
+		.evaluation{
+			width: 500px;
+			height: 60px;
+			margin: 10px auto;
+			border: 1px #000 solid;
+			text-align: center;
+			line-height: 60px;
+		}
+		span{
+			/*line-height: 60px;*/
+		}
+		b{
+			width: 22px;
+			height: 22px;
+			/*line-height: 60px;*/
+			vertical-align: -4px;
+			margin:auto 0;
+			display: inline-block;
+			background: url(img/star.png) no-repeat;
+			background-position: 0 -33px;
+		}
+		b.on{
+			background-position: 0 0;
+		}
+		strong{
+			font-weight: normal;
+			font-size: 16px;
+			color: #EF7300;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var aB=document.getElementsByTagName('b');
+			var oStrong=document.getElementsByTagName('strong');
+			var i = iScore = iStar = 0;
+
+			for(var i=1;i<=aB.length;i++){
+				aB[i-1].index=i;
+				aB[i-1].onmouseover=function(){
+					fnPoint(this.index);
+				}
+				aB[i-1].onmouseout=function(){
+					fnPoint();
+				}
+				aB[i-1].onclick=function(){
+					iStar = this.index;
+				}
+
+				function fnPoint(iArg)
+				{
+				  iScore = iArg || iStar;
+				  for (i = 0; i < aB.length; i++){
+				  	// aB[i].className = i < iScore ? "on" : "";
+				  	if(i < iScore){
+				  		aB[i].className =  "on" ;
+				  	}else{
+				  		aB[i].className =  "" ;
+				  	}
+				  }
+				}
+
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="evaluation">
+		<!-- <span>总体评价:</span> -->
+		总体评价:
+		<span>
+			<b></b>
+			<b></b>
+			<b></b>
+			<b></b>
+			<b></b>
+		</span>
+		<strong>推荐</strong>
+	</div>
+</body>
+</html>

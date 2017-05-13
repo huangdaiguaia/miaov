@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.test{
+			border:2px solid #000;
+			height: 200px;
+			width: 200px;
+			margin:30px;
+		}	
+		ul{
+			display: none;
+			width: 350px;
+			height: 165px;
+			border:5px solid #ccc;
+			position: absolute;
+			top:50%;
+			left: 50%;
+		}
+		ul li{
+			list-style: none;
+			line-height: 40px;
+			width: 250px;
+		}
+		span{
+			display: inline-block;
+			width: 120px;
+		}
+		.red{
+			background: red;
+			border:0px;
+			width: 37px;
+			height: 20px;
+		}
+		.yellow{
+			background: yellow;
+			border:0px;
+			width: 37px;
+			height: 20px;
+		}
+		.blue{
+			background: blue;
+			border:0px;
+			width: 37px;
+			height: 20px;
+		}
+		
+		.reshen{
+			position: relative;
+			height: 500px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBtn=document.getElementsByTagName('button');
+			var ul=document.getElementsByTagName('ul')[0];
+			var oDiv=document.getElementById('test');
+			var oInput=document.getElementsByTagName('input');
+
+			oBtn[0].onclick=function(){
+				ul.style.display = 'block';
+			}
+
+			oBtn[1].onclick=function(){
+				oDiv.style.background = 'red';
+			}
+			oBtn[2].onclick=function(){
+				oDiv.style.background = 'yellow';
+			}
+			oBtn[3].onclick=function(){
+				oDiv.style.background = 'blue';
+			}
+
+			oBtn[4].onclick=function(){
+				oDiv.style.width = '200px';
+			}
+			oBtn[5].onclick=function(){
+				oDiv.style.width = '300px';
+			}
+			oBtn[6].onclick=function(){
+				oDiv.style.width = '400px';
+			}
+
+			oBtn[7].onclick=function(){
+				oDiv.style.height = '200px';
+			}
+			oBtn[8].onclick=function(){
+				oDiv.style.height = '300px';
+			}
+			oBtn[9].onclick=function(){
+				oDiv.style.height = '400px';
+			}
+
+			oInput[0].onclick=function(){
+				oDiv.style.height = '200px';
+				oDiv.style.width = '200px';
+				oDiv.style.background = '#fff';
+			}
+			oInput[1].onclick=function(){
+				ul.style.display = 'none';				
+			}
+		}
+	</script>
+</head>
+<body>
+<div class="reshen">
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp请为下面的div设置样式:
+	<button class="click" id="click">点击设置</button>
+	<div class="test" id="test"></div>
+	<div class="set">
+	<ul>
+		<li>
+		<span>请选择背景颜色:</span>
+		<a href="#"><button class="red" >红</button></a>
+		<a href="#"><button class="yellow">黄</button></a>
+		<a href="#"><button class="blue">蓝</button></a>
+		</li>
+		<li>
+		<span>请选择宽 (px) :</span>
+		<a href="#"><button>200</button></a>
+		<a href="#"><button>300</button></a>
+		<a href="#"><button>400</button></a>
+		</li>
+		<li>
+		<span>请选择高 (px) :</span>
+		<a href="#"><button>200</button></a>
+		<a href="#"><button>300</button></a>
+		<a href="#"><button>400</button></a>
+		</li>
+		<li class="sure">
+			<input type="button" value="恢复">
+			<input type="button" value="确定">
+		</li>
+	</ul>
+	</div>
+</div>
+</body>
+</html>

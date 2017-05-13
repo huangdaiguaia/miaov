@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function () {
+	var oUl = document.getElementById('list');
+	var aLi = oUl.getElementsByTagName('li');
+	// var oP=document.getElementsByTagName('p');
+	// var aBtn=document.getElementsByTagName('input');
+	// var aStrong=document.getElementsByTagName('strong');
+	// var sum=0;
+	// var n = aStrong.innerHTML;			// '0'
+	// var price = parseFloat(oEm.innerHTML);			// 12.5
+	
+	// fnCount ( aLi[0] );
+	for ( var i=0; i<aLi.length; i++ ) {
+		fnCount ( aLi[i]);
+		// fnCount ( aLi[i], Number(aStrong[0].innerHTML),Number(aStrong[1].innerHTML),Number(aStrong[2].innerHTML),Number(aStrong[3].innerHTML));
+		// sum += Number(aStrong[i].innerHTML);
+	}
+
+	// for(var i=0;i<aStrong.length;i++){
+	// 	sum += Number(aStrong[i].innerHTML);
+	// }
+	// alert(sum);
+	// oP[0].innerHTML=Number(aStrong[i].innerHTML);
+
+
+	function fnCount ( li) {
+		var aBtn = li.getElementsByTagName ('input');
+		var oStrong = li.getElementsByTagName ('strong')[0];
+		var oEm = li.getElementsByTagName ('em')[0];
+		var oSpan = li.getElementsByTagName ('span')[0];
+		var n = oStrong.innerHTML;			// '0'
+		var price = parseFloat(oEm.innerHTML);			// 12.5
+
+		// var aStrong=document.getElementsByTagName('strong');
+		
+		aBtn[0].onclick = function () {
+			if ( n > 0 ) {
+				n--;
+			}
+			oStrong.innerHTML = n;
+			oSpan.innerHTML = n*price + '元';
+		};
+		aBtn[1].onclick = function () {
+			n++;
+			oStrong.innerHTML = n;
+			oSpan.innerHTML = n*price + '元';
+
+			// for(var i=0;i<aStrong.length;i++){
+			// 	sum += Number(aStrong[i].innerHTML);
+			// }
+			// alert(sum);
+			// oP[0].innerHTML=Number(aStrong[i].innerHTML);
+			// oP[0].innerHTML=Number(aStrong[i].innerHTML);
+			// alert(n1+n1+n3+n4);
+		};
+	}
+
+	// aBtn[1].onclick = function () {
+	// 	n++;
+	// 	aStrong.innerHTML = n;
+	// 	for(var i=0;i<aStrong.length;i++){
+	// 			// sum += Number(aStrong[i].innerHTML);
+	// 			oP[0].innerHTML=Number(aStrong[i].innerHTML);
+	// 		}
+	// 		// alert(sum);
+	// };
+	
+	
+};
+</script>
+</head>
+
+<body>
+
+<ul id="list">
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>12.5元</em>
+    小计：<span>0元</span>
+  </li>
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>10.5元</em>
+    小计：<span>0元</span>
+  </li>
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>8.5元</em>
+    小计：<span>0元</span>
+  </li>
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>8元</em>
+    小计：<span>0元</span>
+  </li>
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>14.5元</em>
+    小计：<span>0元</span>
+  </li>
+</ul>
+<p>商品合计共：0件</p>
+<p>共花费了：0元</p>
+<p>其中最贵的商品单价是：0元</p>
+
+</body>
+</html>

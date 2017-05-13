@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修改文本值</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#list{
+			margin: 0 auto;
+			width: 800px;
+		}
+		li{
+			list-style: none;
+			height: 40px;
+			line-height: 40px;
+			width: 800px;
+			border:1px solid #ccc;
+		}
+		.icon{
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+			background: url(img/icon.jpg) no-repeat right center;
+		}
+		input{
+			border:0;
+			width: 200px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			margin:0 20px;
+		}
+		.active{
+			border:1px solid #6BA542;
+		}
+		h2{
+			height: 30px;
+			width: 800px;
+			background: #6BA542;
+			border:1px solid #ccc;
+			color: #fff;
+			font-size: 17px;
+			line-height: 30px;
+			text-indent: 20px;
+		}
+		button{
+			width: 35px;
+			height: 25px;
+			background: #fff;
+			border:0;
+			border-radius: 4px;
+			margin-left: 10px;
+			display: none;
+		}
+		button:hover{
+			background: #6BA542;
+		}
+	</style>
+	<script>
+		window.onload=function (){
+			var aLi=document.getElementsByTagName('li');
+
+			function fnWrite(li){
+				var oI=li.getElementsByTagName('i')[0];
+				var aBtn=li.getElementsByTagName('button');
+				var oInput=li.getElementsByTagName('input')[0];
+
+				oI.onclick=function(){
+					for(var i=0;i<aBtn.length;i++){
+						aBtn[i].style.display="inline";
+					}
+					// oInput.style.border="1px";
+					oInput.className='active';
+				}
+
+				aBtn[0].onclick=function(){
+					for(var i=0;i<aBtn.length;i++){
+						aBtn[i].style.display="none";
+					}
+					oInput.className='';
+				}
+				aBtn[1].onclick=function(){
+					oInput.value="妙味远程课程";
+					for(var i=0;i<aBtn.length;i++){
+						aBtn[i].style.display="none";
+					}
+					oInput.className='';
+				}
+			}
+			for(var i=0;i<aLi.length;i++){
+				fnWrite(aLi[i]);
+			}
+			
+			
+
+		}
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<h2>分类名称</h2>
+		<li>
+			<input type="text" value="妙味远程课程">
+			<i class="icon"></i>
+			<button>保存</button>
+			<button>取消</button>
+		</li>
+		<li>
+			<input type="text" value="妙味实体课程">
+			<i class="icon"></i>
+			<button>保存</button>
+			<button>取消</button>
+		</li>
+	</ul>
+</body>
+</html>

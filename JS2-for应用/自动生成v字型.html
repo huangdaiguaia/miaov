@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动生成10个li</title>
+  <style>
+    li{
+      width: 50px;
+      height: 50px;
+      background: #ccc;
+      list-style: none;
+      /*float: left;*/
+      position: absolute;
+      line-height: 50px;
+      text-align: center;
+      margin-left: 10px;
+    }
+    li.one{
+      background: red;
+    }
+    li.two{
+      background: yellow;
+    }
+    li.three{
+      background: blue;
+    }
+    li.four{
+      background: green;
+    }
+
+    ul{
+      position: relative;
+    }
+  </style>
+  <script>
+    window.onload=function(){
+      var oInput=document.getElementsByTagName('input')[0];
+      var oUl=document.getElementsByTagName('ul')[0];
+      var aLi=document.getElementsByTagName('li');
+      var j=0;
+
+      oInput.onclick=function(){
+        for(var i=0;i<10;i++){
+          oUl.innerHTML += '<li>' + i + '</li>';
+
+          // j=i%4;
+          
+        }
+        for(var i=0;i<aLi.length;i++){
+          if(i<=aLi.length/2){
+            aLi[i].style.left=i*60+'px';
+            aLi[i].style.top=i*60+'px';
+          }else{
+            aLi[i].style.left=i*60+'px';
+            aLi[i].style.top=(10-i)*60+'px';
+          }
+          
+        }
+        for(var i=0;i<aLi.length;i++){
+
+          if(i%4==0){
+            aLi[i].className="one";
+          }else if(i%4==1){
+            aLi[i].className="two";
+          }else if(i%4==2){
+            aLi[i].className="three";
+          }else if(i%4==3){
+            aLi[i].className="four";
+          }
+
+        }
+
+      };
+    }
+  </script>
+</head>
+<body> 
+	<input type="button" value="自动生成10个li">
+  <ul></ul>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		.div{
+			width: 400px;
+			height: 400px;
+			border:5px solid #ccc;
+			margin:10px auto;
+			position: relative;
+		}
+		img{
+			width: 400px;
+			height: 400px;
+		}
+		
+		a{
+			width: 50px;
+			height: 50px;
+			border:1px solid #ccc;
+			display: inline-block;
+			position: absolute;
+			top:150px;
+			font-size: 26px;
+			text-decoration: none;
+			color: #000;
+			text-align: center;
+			line-height: 50px;
+			background: #fff;
+			filter:alpha(opacity:80); opacity:0.8; 
+		}
+		a:hover{
+			filter:alpha(opacity:30); opacity:0.3; 
+		}
+		.prev{
+			left: 10px;
+		}
+		.next{
+			right: 10px;
+		}
+		strong,p{
+			width: 400px;
+			height: 40px;
+			position: absolute;
+			left: 0px;
+			text-align: center;
+			line-height: 40px;
+			color: #fff;
+			font-weight: normal;
+			filter:alpha(opacity:80); opacity:0.8;
+			background: #000;
+		}
+		strong{
+			top: 0px;
+		}
+		p{
+			bottom: 0px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oImg=document.getElementsByTagName('img')[0];
+			var oA=document.getElementsByTagName('a');
+			var oStr=document.getElementsByTagName('strong')[0];
+			var oP=document.getElementsByTagName("p")[0];
+
+			var arrUrl=["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+			var arrText=["小姐姐","小妹妹","小哥哥","美"];
+			var num=0;
+
+
+			// 初始化
+			function fnTab(){
+				oStr.innerHTML=num+1+"/"+arrUrl.length;
+				oP.innerHTML=arrText[num];
+				oImg.src=arrUrl[num];
+			}
+			fnTab();
+
+			// 左右标签
+			oA[0].onclick=function(){
+				num--;
+				if(num==-1){
+					num=arrText.length-1;
+				}
+				fnTab();
+			};
+			oA[1].onclick=function(){
+				num++;
+				if(num==arrText.length){
+					num=0;
+				}
+				fnTab();
+			};
+
+
+		};
+	</script>
+</head>
+<body>
+	<div class="div">
+		<strong>图片数量计算中</strong>
+		<p>这个图好美</p>
+		<a class="prev" href="#">&lt</a>
+		<a class="next" href="#">&gt</a>
+		<img src="" alt="图片">
+	</div>
+</body>
+</html>

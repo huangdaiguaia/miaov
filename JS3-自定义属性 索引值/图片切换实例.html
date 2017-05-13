@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片切换</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#pic{
+			width: 390px;
+			height: 480px;
+			border:1px solid #ccc;
+			margin:20px auto;
+			position: relative;
+		}
+		p,span{
+			width: 390px;
+			height: 30px;
+			background: #444;
+			line-height: 30px;
+			text-align: center;
+			position: absolute;
+			left: 0;
+			color: #ccc;
+		}
+		p{
+			bottom: 0;
+		}
+		span{
+			top: 0;
+		}
+		ul{
+			position: absolute;
+			bottom: 40px;
+			left: 170px;
+		}
+		img{
+			width: 390px;
+			height: 480px;
+		}
+		li{
+			width: 10px;
+			height: 10px;
+			float: left;
+			background: #ccc;
+			list-style: none;
+			margin-right: 10px;
+		}
+		li.active{
+			background: #ff0;
+		}
+
+	</style>
+	<script>
+		window.onload=function(){
+			var oImg=document.getElementsByTagName('img')[0];
+			var oSpan=document.getElementsByTagName('span')[0];
+			var oP=document.getElementsByTagName('p')[0];
+			var oUl=document.getElementsByTagName('ul')[0];
+			var aLi=document.getElementsByTagName('li');
+
+			var aUrl=["img/1.png","img/2.png","img/3.png","img/4.png"];
+			var aText=["ni","wo","ta","是一家"];
+			var num=0;
+
+			for(var i=0;i<aUrl.length;i++){
+				oUl.innerHTML+="<li></li>";
+				// aLi[i].className=""; //这样每次点击不能清除
+			}
+
+			function fnTab(num){
+				oImg.src=aUrl[num];
+				oSpan.innerHTML=1+num+"/"+aUrl.length;
+				oP.innerHTML=aText[num];
+				// for(var i=0;i<aUrl.length;i++){
+				// 	// oUl.innerHTML+="<li></li>";  //不能写在这里  这样之后就每次点击都加四个li
+				// 	aLi[i].className="";
+				// }
+				aLi[num].className="active";
+			}
+			fnTab(num);
+
+			for(var i=0;i<aUrl.length;i++){
+				// oUl.innerHTML+="<li></li>"; //不能写在这里
+				aLi[i].index=i;
+				aLi[i].onclick=function(){
+					
+					//active可以写这里 但还是地初始化 不然最开始就没有人有小黄点
+					for(var i=0;i<aUrl.length;i++){
+						// oUl.innerHTML+="<li></li>";  //不能写在这里  这样之后就每次点击都加四个li 而且最开始没有了四个li
+						aLi[i].className="";
+					}
+					fnTab(this.index);
+				}
+
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<div id="pic">
+		<span>数量正在加载中...</span>
+		<p>文字正在加载中...</p>
+		<img src="" alt="图片">
+		<ul>
+			<!-- <li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li> -->
+		</ul>
+	</div>
+</body>
+</html>

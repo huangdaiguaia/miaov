@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QQ</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			float: left;
+			list-style: none;
+			position: relative;
+			height: 80px;
+			width: 80px;
+		}
+		#box{
+			width: 480px;
+			height: 150px;
+			margin: 200px auto;
+			border:1px solid #ccc;
+		}
+		img{
+			width: 50px;
+			height: 50px;
+			margin: 10px;
+		}
+		.top{
+			position: absolute;
+			top:-110px;
+			left: 40px;
+			background: #ff0;
+			width: 220px;
+			height: 130px;
+			z-index: 10;
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oImg=document.getElementsByTagName('img');
+			var oLi=document.getElementsByTagName('li');
+			var oUl=document.getElementsByTagName('ul')[0];
+			var oTop=oUl.getElementsByTagName('div');
+			var len=oLi.length;
+
+			// oLi[0].onmouseover=function(){
+			// 	oTop[0].style.display="block";
+			// }
+
+			// for (var i = 0; i < oLi.length; i++) 
+			// {
+			// oLi[i].onmouseover = (function (k) {return (function () { oClose[k].style.display='block';});})(i);
+
+			// }
+
+			// for(var i=0;i<oLi1.length;i++){
+
+			// 	oLi1[i].index=i	
+
+			// 	oLi1[i].onmouseover=function(){
+			// 		for(var i=0;i<oLi1.length;i++){
+			// 		oP1[i].style.display="none"
+			// 		}
+			// 		oP1[this.index].style.display="block"
+			// 	}
+
+			// 	oLi1[i].onmouseout=function(){
+			// 		for(var i=0;i<oLi1.length;i++){
+			// 		oP1[i].style.display="none"
+			// 		}
+			// 		oP1[this.index].style.display="none"
+			// 	}
+			// }
+
+			for(var i=0;i<len;i++){
+
+				oLi[i].index=i;	//自定义属性（索引值）
+
+				oLi[i].onmouseover=function(){
+					oTop[this.index].style.display="block"; //不懂?
+				}
+				oLi[i].onmouseout=function(){
+					oTop[this.index].style.display="none";  //不懂?
+				}
+
+			}
+
+			// oLi[i].onmouseover=function(){
+			// 	for(var i=0;i<len;i++){
+			// 		oTop[i].style.display="block";
+			// 	}
+			// }
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div class="bottom">
+			<ul>
+				<li>   <!-- <li index=1> -->
+				<a href="#"><img src="img/1.jpg" alt=""></a>
+				<div class="top">
+					QQ空间
+				</div>
+				</li>
+				<li>      <!-- <li index=2> -->
+				<a href="#"><img src="img/2.jpg" alt=""></a>
+				<div class="top">
+					QQ邮箱
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/3.jpg" alt=""></a>
+				<div class="top">
+					QQ新闻
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/1.jpg" alt=""></a>
+				<div class="top">
+					QQ空间
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/2.jpg" alt=""></a>
+				<div class="top">
+					QQ邮箱
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/3.jpg" alt=""></a>
+				<div class="top">
+					QQ新闻
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/1.jpg" alt=""></a>
+				<div class="top">
+					QQ空间
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/2.jpg" alt=""></a>
+				<div class="top">
+					QQ邮箱
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/3.jpg" alt=""></a>
+				<div class="top">
+					QQ新闻
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/1.jpg" alt=""></a>
+				<div class="top">
+					QQ空间
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/2.jpg" alt=""></a>
+				<div class="top">
+					QQ邮箱
+				</div>
+				</li>
+				<li>
+				<a href="#"><img src="img/3.jpg" alt=""></a>
+				<div class="top">
+					QQ新闻
+				</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
