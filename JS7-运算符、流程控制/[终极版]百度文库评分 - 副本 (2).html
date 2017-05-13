@@ -16,8 +16,9 @@
 			height: 60px;
 			margin: 10px auto;
 			border: 1px #000 solid;
-			text-align: center;
+			/*text-align: center;*/
 			line-height: 60px;
+			padding-left: 30px;
 		}
 		span{
 			/*line-height: 60px;*/
@@ -44,7 +45,8 @@
 	<script>
 		window.onload=function(){
 			var aB=document.getElementsByTagName('b');
-			var oStrong=document.getElementsByTagName('strong');
+			var oStrong=document.getElementsByTagName('strong')[0];
+			var aText=["","不咋样","将就","还行","推荐","力荐"];
 
 			var indexOff=-1;
 			// var indexOff=0;
@@ -56,42 +58,30 @@
 				aB[i].onmouseover=function(){
 					fnStar(this.index);
 				}
-				aB[i].onmouseout=function(){		
-					index=indexOff ||indexOn ;
-					fnStar(index);
+				aB[i].onmouseout=function(){	
+					fnStar(indexOff);
 				}
 				aB[i].onclick=function(){
 					indexOff=this.index;
 				}
-				
-				// 这部分必须把"on"和""一起实现,
-				// 因为onclick通过onmouseout来实现onmouseover一样的效果[通过传参]
+			}
 
-				function fnStar(index){				
-					for(var i=0;i<aB.length;i++){
-						aB[i].className=i<=index?"on":"";
-						// if(i<index){
-						// 	aB[i].className="on";
-						// }else{
-						// 	aB[i].className="";
-						// }
-					}
+			// 这部分必须把"on"和""一起实现,
+			// 因为onclick通过onmouseout来实现onmouseover一样的效果[通过传参]
+
+			function fnStar(index){
+
+				oStrong.innerHTML=aText[index+1];	
+							
+				for(var i=0;i<aB.length;i++){
+					aB[i].className=i<=index?"on":"";
+					// if(i<index){
+					// 	aB[i].className="on";
+					// }else{
+					// 	aB[i].className="";
+					// }
 				}
 			}
-			// alert(0||-1);      //-1
-			// alert(-1||0);      //-1
-
-			// alert(1||-1);      //1
-			// alert(-1||1);      //-1
-
-			// alert(2||-1);      //2
-			//alert(-1||2);       //-1
-
-			// alert(1||0);       //1
-			// alert(-1||-2);     //-1
-			//故:两个操作数中只有一个真值时,返回这个真值[只有0是假值]
-			//   两个操作数都是真值时,返回第一个[即前面那个]值
-
 		}
 	</script>
 </head>
@@ -106,7 +96,7 @@
 			<b></b>
 			<b></b>
 		</span>
-		<strong>推荐</strong>
+		<strong></strong>
 	</div>
 </body>
 </html>
