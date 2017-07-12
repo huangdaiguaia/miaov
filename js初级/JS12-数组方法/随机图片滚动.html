@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机图片滚动</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+			width: 100px;
+			height: 60px;
+			font-size: 0;
+			position: absolute;
+			top:0px;
+		}
+		img{
+			width: 100px;
+			height: 60px;
+		}
+		ul{
+			width: 100px;
+			height: 60px;
+			overflow: hidden;
+			float: left;
+			margin:5px;
+			position: relative;
+		}
+		#wrap{
+			width: 222px;
+			height: 280px;
+			border: 1px solid #eee;
+			margin: 20px auto;
+		}
+	</style>
+	<script src='miaov.js'></script>
+	<script>
+		// 1.每隔一秒让随机的一个动    [完成]
+		// 2.每隔一秒让随机的几个动    [完成]
+		// 3.每隔随机的秒让所有动
+		window.onload=function(){
+			var aUl=document.getElementsByTagName('ul');
+			var timer=null;
+
+			for(var i=0;i<aUl.length;i++){
+				aUl[i].index=0;
+			}
+			timer=setInterval(function(){
+				var arr=[];
+				// var index=Math.round( Math.random()*(aUl.length-1)) ;
+				var num=Math.round( Math.random()*aUl.length);
+				for(var i=0;i<num;i++){
+					arr.push(Math.round( Math.random()*(aUl.length-1)));
+				}
+				for(var j=0;j<arr.length;j++){
+					fnTab(aUl[arr[j]]);
+				}
+
+			},1000);
+
+			function fnTab(ul){
+				var aLi=ul.getElementsByTagName('li')[0];
+				//ul.index=0;
+				ul.index+=-60;
+				console.log(ul.index);
+				doMove ( aLi, 'top', 3, ul.index);
+				if(ul.index==-120){
+					ul.index=60;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<ul>
+		<li>
+			<img src="img/1.jpg" alt="">
+			<img src="img/2.jpg" alt="">
+			<img src="img/3.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/4.jpg" alt="">
+			<img src="img/5.jpg" alt="">
+			<img src="img/6.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/7.jpg" alt="">
+			<img src="img/8.jpg" alt="">
+			<img src="img/9.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/10.jpg" alt="">
+			<img src="img/11.jpg" alt="">
+			<img src="img/12.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/13.jpg" alt="">
+			<img src="img/14.jpg" alt="">
+			<img src="img/15.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/16.jpg" alt="">
+			<img src="img/17.jpg" alt="">
+			<img src="img/18.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/19.jpg" alt="">
+			<img src="img/20.jpg" alt="">
+			<img src="img/21.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/22.jpg" alt="">
+			<img src="img/23.jpg" alt="">
+			<img src="img/24.jpg" alt="">
+		</li>
+	</ul>
+</div>
+</body>
+</html>

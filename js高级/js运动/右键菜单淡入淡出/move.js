@@ -1,0 +1,51 @@
+function move(obj, json, fn) {
+	clearInterval(obj.iTimer);
+	var iCur = 0;
+	var iSpeed = 0;
+
+	obj.iTimer = setInterval(function() {
+
+		var iBtn = true;
+
+		for ( var attr in json ) {
+
+			var iTarget = json[attr];
+
+			if (attr == 'opacity') {
+				iCur = Math.round(css( obj, 'opacity' ) * 100); //没有必要变小数 也没必要四舍五入吧...//*100的必要...但下面都取整了
+			} else {
+				iCur = parseInt(css(obj, attr));   //这里都取整了
+			}
+
+			iSpeed = ( iTarget - iCur ) / 8;                    //缓冲运动
+			iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+			if (iCur != iTarget) {
+				iBtn = false;
+
+				if (attr == 'opacity') {
+					obj.style.opacity = (iCur + iSpeed) / 100;
+					obj.style.filter = 'alpha(opacity='+ (iCur + iSpeed) +')';
+				} else {
+					obj.style[attr] = iCur + iSpeed + 'px';
+				}
+
+			}
+
+		}
+
+		if (iBtn) {
+			clearInterval(obj.iTimer);
+			fn && fn.call(obj);             //fn && fn();          ?
+		}
+
+	}, 30);
+}
+
+function css(obj, attr) {
+	if (obj.currentStyle) {
+		return obj.currentStyle[attr];
+	} else {
+		return getComputedStyle(obj, false)[attr];
+	}
+}

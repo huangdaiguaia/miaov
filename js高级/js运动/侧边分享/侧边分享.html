@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>侧边分享</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#bar{
+			width: 150px;
+			height: 300px;
+			background: #000;
+			position: absolute;
+			/*top:210px; //这里的高度不能写死 因为屏幕可能滚动*/
+			left: -150px;
+		}
+		#share{
+			line-height: 30px;
+			padding: 10px;
+			position: absolute;
+			left: 150px;
+			top:116px;
+			background: #000;
+			color: #fff;
+		}
+	</style>
+	<script src='move.js'></script>
+	<script>
+		window.onload=function(){
+			var oBar=document.getElementById('bar');
+			var oShare=document.getElementById('share');
+
+			// 设置高度
+			setPos();
+			window.onscroll=setPos();
+			window.onresize=setPos();
+
+			function setPos(){
+				var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+				var clientHeight=document.documentElement.clientHeight;
+
+				oBar.style.top=scrollTop+clientHeight/2-oBar.offsetHeight/2+'px';
+			}
+
+			oBar.onmouseover=function(){
+				move(oBar,{
+					left:0
+				})
+			}
+
+			oBar.onmouseout=function(){
+				move(oBar,{
+					left:-150
+				})
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="bar">
+		<div id="share">分享</div>
+	</div>
+</body>
+</html>

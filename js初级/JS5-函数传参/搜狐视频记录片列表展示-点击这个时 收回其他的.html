@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜狐视频记录片列表展示</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.list{
+			width: 500px;
+			border:1px solid #ccc;
+			margin:20px auto;
+			padding: 10px;
+		}
+		h3{
+			border-bottom: 1px solid #ccc;
+			line-height: 40px;
+			height: 40px;
+			text-indent: 20px;
+			font-weight: normal;
+		}
+		li{
+			list-style-type:none;
+			/*text-indent: 20px;*/
+			padding: 10px;
+			height: 35px;
+			line-height: 35px;
+			border-bottom: 1px dotted #ccc;
+		}
+		li.show{
+			height: 100px;
+			line-height: 80px;
+		}
+		.left{
+			width: 100px;
+			height: 100px;
+			float: left;
+		}
+		.left{
+			width: 90px;
+			height: 70px;
+			border:1px solid #29739C;
+			text-align: center;
+			line-height: 70px;
+			margin: 5px;
+		}
+		.right{
+			width: 340px;
+			height: 80px;
+			float: left;
+			padding: 10px;
+		}
+		img{
+			padding: 5px;
+		}
+		.right p{
+			height: 20px;
+			line-height: 20px;
+			font-size: 14px;
+			color: #29739C;
+		}
+		.right button{
+			margin-left: 290px;
+			background: #29739C;
+			border:1px solid #29739C;
+			border-radius: 3px;
+			color: #fff;
+			width: 35px;
+		}
+		i{
+			width: 17px;
+			height: 37px;
+			display: inline-block;
+			background: url(img/ic.png) no-repeat right center;
+			float: left;
+			color: #fff;
+			font-style: normal;
+			font-size: 13px;
+			line-height: 37px;
+			text-align: center;
+		}
+		span{
+			margin-left: 10px;
+		}
+		.div{
+			display: none;
+		}
+		.span{
+			/*display: none;*/
+		}
+	</style>
+	<script>
+		// window.onload=function(){
+		// 	var oUl=document.getElementsByTagName('ul')[0];
+		// 	var aLi=oUl.getElementsByTagName('li');
+
+		// 	function tab(li){
+		// 		var oSpan=li.getElementsByTagName('span')[0];
+		// 		var aDiv=li.getElementsByTagName('div')[0];
+
+		// 		li.onclick=function(){
+
+		// 			//点击这个时 收回其他的
+		// 			// for()
+
+		// 			if(li.className==""){
+		// 				li.className="show";
+		// 				oSpan.style.display="none";
+		// 				aDiv.style.display='block';
+		// 			}else{
+		// 				li.className="";
+		// 				oSpan.style.display="inline";
+		// 				aDiv.style.display='none';
+		// 			}
+
+		// 		}
+
+		// 	}
+
+		// 	for(var i=0;i<aLi.length;i++){
+		// 		tab(aLi[i]);
+		// 	}
+
+		// }
+
+		window.onload=function(){
+			var aLi=document.getElementsByTagName('li');
+			var aSpan=document.getElementsByTagName('span');
+			// 取得span
+			// for(var i=0;i<aLi.length;i++){
+			// 	aSpan=aLi[i].getElementsByTagName('span');
+
+			// 	for(var j=0;j<aSpan.length;j++){
+			// 		arrSpan.push( aSpan[j] );
+			// 	}
+
+			// }
+
+			// 当点击li时
+			for(var i=0;i<aLi.length;i++){
+
+				aLi[i].index=i;
+
+				aLi[i].onclick=function(){
+					var oSpan=this.getElementsByTagName('span')[0];
+					var aDiv=this.getElementsByTagName('div')[0];
+
+					//点击这个时 收回其他的  取得div不方便
+					for(var i=0;i<aLi.length;i++){
+						if(aLi[i]!=this){
+							aLi[i].className="";
+							oSpan.style.display="inline";
+							aDiv.style.display='none';
+						}
+					}
+
+					if(this.className==""){
+						this.className="show";
+						oSpan.style.display="none";
+						aDiv.style.display='block';
+					}else{
+						this.className="";
+						oSpan.style.display="inline";
+						aDiv.style.display='none';
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="list">
+	<h3>调试工具</h3>
+		<ul>
+			<li><!-- class="show" -->
+			<i class="ic">1</i>
+			<span class="span">尽量保证 HTML 代码结构一致</span>
+			<div class="div">
+				<div class="left">
+					<img src="img/1.png" alt="">
+				</div>
+				<div class="right">
+					<p>设置高度与行高相同，还有就是字体大小设置为偶数或line-height为偶数</p>
+					<button>播放</button>
+				</div>
+			</div>
+			</li>
+			<li><!-- class="show" -->
+			<i class="ic">2</i>
+			<span class="span">把右边的数据类型转成布尔</span>
+			<div class="div">
+				<div class="left">
+					<img src="img/1.png" alt="">
+				</div>
+				<div class="right">
+					<p>JS中的数据类型：数字(NaN)、字符串、布尔、函数、对象(obj、[]、{}、null)、未定义</p>
+					<button>播放</button>
+				</div>
+			</div>
+			</li>
+			<li><!-- class="show" -->
+			<i class="ic">3</i>
+			<span class="span">如何解决IE8一下的input框文字偏上问</span>
+			<div class="div">
+				<div class="left">
+					<img src="img/1.png" alt="">
+				</div>
+				<div class="right">
+					<p>选择器不仅要考虑后面覆盖前面 还有权重问题1，css样式选择器的优先级为：“元数</p>
+					<button>播放</button>
+				</div>
+			</div>
+			</li>
+			<li><!-- class="show" -->
+			<i class="ic">4</i>
+			<span class="span">尽量保证 HTML 代码结构一致</span>
+			<div class="div">
+				<div class="left">
+					<img src="img/1.png" alt="">
+				</div>
+				<div class="right">
+					<p>设置高度与行高相同，还有就是字体大小设置为偶数或line-height为偶数</p>
+					<button>播放</button>
+				</div>
+			</div>
+			</li>
+			<li><!-- class="show" -->
+			<i class="ic">5</i>
+			<span class="span">尽量保证 HTML 代码结构一致</span>
+			<div class="div">
+				<div class="left">
+					<img src="img/1.png" alt="">
+				</div>
+				<div class="right">
+					<p>设置高度与行高相同，还有就是字体大小设置为偶数或line-height为偶数</p>
+					<button>播放</button>
+				</div>
+			</div>
+			</li>
+			<li><!-- class="show" -->
+			<i class="ic">6</i>
+			<span class="span">尽量保证 HTML 代码结构一致</span>
+			<div class="div">
+				<div class="left">
+					<img src="img/1.png" alt="">
+				</div>
+				<div class="right">
+					<p>设置高度与行高相同，还有就是字体大小设置为偶数或line-height为偶数</p>
+					<button>播放</button>
+				</div>
+			</div>
+			</li>
+			<li><!-- class="show" -->
+			<i class="ic">7</i>
+			<span class="span">尽量保证 HTML 代码结构一致</span>
+			<div class="div">
+				<div class="left">
+					<img src="img/1.png" alt="">
+				</div>
+				<div class="right">
+					<p>设置高度与行高相同，还有就是字体大小设置为偶数或line-height为偶数</p>
+					<button>播放</button>
+				</div>
+			</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

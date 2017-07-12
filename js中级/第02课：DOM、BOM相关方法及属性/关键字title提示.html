@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>关键字title提示</title>
+	<style>
+		div{
+			width: 700px;
+			height: 500px;
+			margin: 20px auto;
+			border: 2px #999 solid;
+			padding: 20px;
+		}
+		p{
+			text-indent: 20px;
+		}
+		span{
+			color: #0ff;
+			position: relative;
+		}
+		strong{
+			border: 1px #777 solid;
+			display: block;
+			background: #000;
+			color: #fff;
+			padding: 8px;
+			text-indent: 0;
+			position: absolute;
+			bottom: -40px;
+			left: 0;
+			z-index: 1;
+			white-space:nowrap;
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var json={
+				'JavaScript':'JavaScript好厉害的啊',
+				'Web':'并且所有的现代'
+			};
+
+			var aSpan=document.getElementsByTagName('span');
+
+			for(var i=0;i<aSpan.length;i++){
+				aSpan[i].onmouseover=function(){
+					var oStrong=document.createElement('strong');
+					if(this.innerHTML=='JavaScript'){
+						oStrong.innerHTML=json.JavaScript;
+					}else{
+						oStrong.innerHTML=json.Web;
+					}
+
+					this.appendChild(oStrong);
+					this.children[0].style.display="block";
+				}
+
+				aSpan[i].onmouseout=function(){
+					this.children[0].style.display="none";
+				}
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div class="box">
+		<p>
+			<span>JavaScript<!-- <strong>JavaScript好厉害的啊</strong> --></span>是面向Web的编程语言，绝大多数现代网站都使用了<span>JavaScript</span>，并且所有的现代<span>Web<!-- <strong>编程语言好厉害的啊</strong> --></span>浏览器——基于桌面系统、游戏机、平板电脑和智能手机的浏览器——均包含了<span>JavaScript</span>解释器。这使得<span>JavaScript</span>能够称得上史上最广泛的编程语言。<span>JavaScript</span>也是前端开发工程师必须掌握的三种技能之一，描述网页内容的HTML、描述网页样式的CSS以及描述网页行为的<span>JavaScript</span>。
+		</p>
+	</div>
+</body>
+</html>

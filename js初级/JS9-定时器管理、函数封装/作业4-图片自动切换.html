@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作业4-图片自动切换</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+			padding: 10px;
+			display: none;
+		}
+		li.active{
+			/*display: block;*/
+		}
+		#pic{
+			width: 600px;
+			height: 600px;
+			overflow: hidden;
+			margin: 10px auto;
+			position: relative;
+		}
+		#picList{
+			width: 3000px;
+			height: 600px;
+			position: absolute;
+			left: 0px;
+			top:0;
+		}
+		img{
+			width: 600px;
+			height: 600px;
+			float: left;
+		}
+		#text{
+			background: #000;
+			opacity: 0.8;
+			position: absolute;
+			/*bottom:-600px;*/
+			bottom:-120px;
+			left: 0;
+		}
+		p,h2{
+			text-indent: 20px;
+			color:#fff;
+		}
+		h2{
+			line-height: 40px;
+		}
+		p{
+			line-height: 30px;
+		}
+
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oPicList=document.getElementById('picList');
+			var oUl=document.getElementsByTagName('ul')[0];
+			var aLi=document.getElementsByTagName('li');
+			var timer=null;
+			var timer2=null;
+			var timer3=null;
+			var num=0;
+			var num2=-120;
+			var num3=0;
+
+			function tab(){
+				clearInterval(timer);
+				timer=setInterval(function(){
+					num-=30;
+					num=num%3000;
+					oPicList.style.left=num+'px';
+					if(num==-600||num==-1200||num==-1800||num==-2400||num==0){              // ||-1200||0 是错的
+						clearInterval(timer);
+						text();
+					}
+					if(num==-2400){
+						num=600;
+					}
+				},100)
+			}
+
+			function text(){
+				clearInterval(timer2);
+				timer2=setInterval(function(){
+					num2+=5;
+					oUl.style.bottom=num2+'px';
+					if(num2==0){
+						num2=-120;
+						clearInterval(timer2);
+						tab();
+					}
+				},100)
+				aLi[num3].style.display="block";
+				for(var i=0;i<aLi.length;i++){
+					if(i!=num3){
+						aLi[i].style.display='none';
+					}
+				}
+				num3++;
+				if(num3==aLi.length){
+					num3=0;
+				}
+			}
+			tab();
+		}
+	</script>
+</head>
+<body>
+<div id="pic">
+	<div id="picList" class="clearfix">
+		<img src="img/1.jpg" alt="">
+		<img src="img/2.jpg" alt="">
+		<img src="img/3.jpg" alt="">
+		<img src="img/4.jpg" alt="">
+		<img src="img/5.jpg" alt="">
+	</div>
+	<ul id="text">
+		<li class="active">  <!-- class="active" -->
+		<h2>光标处复制至一个单子/单词的</h2>
+		<p>你说一二三转身你听被抹掉的慌张我想，抬头暖阳你给我简单拥抱我想，踩碎了迷茫走过时光睁开眼你就会听到我想，左肩有你，右肩微笑</p>
+		</li>
+		<li>
+		<h2>么拼比较自由,但在放在(例如h3中的</h2>
+		<p>行内元素排列在同一行中,直到这行排不下才换行 内联元素内可放文本和内联元素行内元素 </p>
+		</li>
+		<li>
+		<h2>元素呈现为内联对象，周围元素保持在同的</h2>
+		<p>我一脚踏空 我就要飞起来了我向上是迷茫 我向下听见你说这世界是空荡荡我向下听见你说这世界是空荡荡</p>
+		</li>
+		<li>
+		<h2>元素呈现为内联对象，周围元素保持在同的</h2>
+		<p>我一脚踏空 我就要飞起来了我向上是迷茫 我向下听见你说这世界是空荡荡我向下听见你说这世界是空荡荡</p>
+		</li>
+		<li>
+		<h2>元素呈现为内联对象，周围元素保持在同的</h2>
+		<p>我一脚踏空 我就要飞起来了我向上是迷茫 我向下听见你说这世界是空荡荡我向下听见你说这世界是空荡荡</p>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

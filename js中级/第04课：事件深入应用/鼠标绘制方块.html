@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标绘制方块</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+			border: 1px solid #e00;
+			position: absolute;
+			/*width: 50px;
+			height: 50px;*/
+
+		}
+		ul{
+			width: 500px;
+			height: 500px;
+			margin: 10px auto;
+			border: 1px solid #d00;
+			/*position: relative;*/
+		}
+
+	</style>
+	<script>
+		window.onload=function(){
+			var oUl=document.getElementsByTagName('ul')[0];
+
+			oUl.onmousedown=function(ev){
+				var oLi=document.createElement('li');
+
+				var ev=ev||event;
+				var disX=ev.clientX;
+				var disY=ev.clientY;
+				oLi.style.left=disX+'px';
+				oLi.style.top=disY+'px';
+
+				oUl.onmousemove=function(ev){
+					var ev =ev||event;
+					oLi.style.width=(ev.clientX-disX)+'px';
+					oLi.style.height=(ev.clientY-disY)+'px';
+				}
+				document.onmouseup=function(ev){
+					/*var ev =ev||event;
+					oLi.style.width=(ev.clientX-disX)+'px';
+					oLi.style.height=(ev.clientY-disY)+'px';*/
+					oUl.onmousemove=null;
+				}
+
+				oUl.appendChild(oLi);
+			}
+		}
+	</script>
+</head>
+<body>
+<ul id="box">
+	<!-- <li></li> -->
+</ul>
+</body>
+</html>

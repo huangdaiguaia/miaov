@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>getElementsByClassName增强</title>
+	<style>
+		li{
+			background: #0ff;
+			margin-bottom: 2px;
+		}
+	</style>
+	<script>
+		// 让含有box 或box1的元素选中
+		// obj 谁的孩子 tagname 什么标签  ' , '属于什么类
+
+		window.onload=function(){
+			var oUl=document.getElementsByTagName('ul')[0];
+			//var aLi=document.getElementsByTagName('li');
+
+			function getElementsByClassName(parent,tagname,className){
+				var arr=[];
+				var aCanClassName=className.split(',');
+				var aOne=parent.getElementsByTagName(tagname);
+
+				for(var i=0;i<aOne.length;i++){
+
+					var aClassName = aOne[i].className.split(' ');  //className注意不是class
+					for(var j=0;j<aClassName.length;j++){
+
+						for(var k=0;k<aCanClassName.length;k++){
+							if(aClassName[j]==aCanClassName[k]){
+
+								if(arr[arr.length-1]==aOne[i]){  //解决 有把一个li添加进数组两次的可能
+									break;
+									//continue;         有待考究用哪个
+								}else{
+									arr.push(aOne[i]);
+									// break;
+								}
+
+							}
+						}
+
+					}
+
+				}
+				return arr;
+			}
+			var aObj=getElementsByClassName(oUl, 'li', 'box,box1');//返回一个数组box,box1
+			for(var i=0;i<aObj.length;i++){
+				aObj[i].style.backgroundColor="#ff0";
+			}
+
+		}
+	</script>
+</head>
+<body>
+<ul>
+	<li class="box1 hhh box"></li>
+	<li class="box1 box"></li>
+	<li class="box"></li>
+	<li class="box1 box3"></li>
+	<li class="box2 "></li>
+	<li class="box3 box"></li>
+</ul>
+<div class="box"></div>
+</body>
+</html>

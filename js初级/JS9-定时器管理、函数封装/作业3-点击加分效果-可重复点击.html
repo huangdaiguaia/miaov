@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可重复点击[效果一样但没用这条语句?] opacity(aLi[num],0.08,0)  </title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#space{
+			height: 140px;
+		}
+		#bd{
+			width: 700px;
+			height: 180px;
+			border: 1px #333 solid;
+			margin: 10px auto;
+		}
+
+		#bd2{
+			width: 700px;
+			height: 40px;
+			border-top: 1px #444 solid;
+		}
+
+		ul{
+			width: 0;
+			height: 40px;
+			background: #31F7EF;
+			position: relative;
+		}
+
+		li{
+			list-style: none;
+			float: left;
+			width: 50px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			position: absolute;
+			top:0px;
+		}
+	</style>
+	<script src="miaov.js"></script>
+	<script>
+		window.onload=function(){
+			var aLi=document.getElementsByTagName('li');
+			var oUL=document.getElementsByTagName('ul')[0];
+			var oBd2=document.getElementById('bd2');
+			var timer=null;
+			var timer2=null;
+			var num=0;
+
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].style.left=50*i+"px";
+			}
+
+			function ini(){
+				oUL.style.width='0px';
+				oUL.style.opacity=1;
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].style.top=0+"px";
+					aLi[i].style.opacity=1;
+				}
+			}
+			 ini();
+
+			document.onclick=function(){
+				ini();
+
+				clearInterval(timer);
+				timer=setInterval(function(){         //这个定时器的作用是 让li一个个的 开始变化
+					doMove(aLi[num],'top',10,-139);
+
+					// opacity(aLi[num],0.08,0);             //
+
+					num++;
+					if(num==aLi.length){
+						clearInterval(timer);
+						num=0;
+						console.log(num);
+					}
+				},100);
+				doMove(oUL,'width',30,700,function(){
+					opacity(oUL,0.08,0);
+				});
+				/*for(var i=0;i<aLi.length;i++){           //
+					opacity(aLi[i],0.08,0);
+				}*/
+
+			}
+
+			function opacity(obj,len,target){
+				var opacityNum=1;
+				clearInterval(obj.opacity);
+				obj.opacity=setInterval(function(){
+					opacityNum-=len;
+					obj.style.opacity=opacityNum;
+					if(opacityNum===target){
+						clearInterval(obj.opacity);
+					}
+				},100)
+			}
+
+
+		}
+	</script>
+</head>
+<body>
+	<div id="bd">
+		<div  id="space">
+
+		</div>
+		<div id="bd2">
+			<ul>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+				<li>+1</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

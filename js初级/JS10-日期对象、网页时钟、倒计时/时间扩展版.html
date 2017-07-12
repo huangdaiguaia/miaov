@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+</style>
+
+<script>
+
+window.onload = function () {
+	var oP = document.getElementById('time');
+	var aImg = document.getElementsByTagName('img');
+
+	setInterval( fnTime, 1000 );
+
+	fnTime ();
+
+	function fnTime () {
+
+		var myTime = new Date();
+		var iHours = myTime.getHours();
+		var iMin = myTime.getMinutes();
+		var iSec = myTime.getSeconds();
+		var str = toTwo(iHours)+' '+toTwo(iMin)+' '+toTwo(iSec);
+
+		// str = '21 42  04';
+
+		oP.innerHTML = str;
+
+		// str.charAt(5)
+		// aImg[4].src = 'img/' + str.charAt(4) + '.JPG';
+		// aImg[5].src = 'img/' + str.charAt(5) + '.JPG';
+
+		// aImg[2].src = 'img/' + str.charAt(4) + '.JPG'; //'img/colon.JPG';
+		for ( var i=0; i<str.length; i++ ) {
+			if(str.charAt(i)==' '){
+				aImg[i].src = 'img/colon.JPG';
+			}else{
+				aImg[i].src = 'img/' + str.charAt(i) + '.JPG';
+			}
+
+		}
+
+	}
+};
+
+function toTwo ( n ) {
+	return n < 10 ?  '0' + n : '' + n;
+}
+
+</script>
+
+</head>
+
+<body>
+<p id="time" style="font-size:60px;"></p>
+<img src="img/0.JPG" />
+<img src="img/0.JPG" />
+<img src="img/colon.JPG" />
+<img src="img/0.JPG" />
+<img src="img/0.JPG" />
+<img src="img/colon.JPG" />
+<img src="img/0.JPG" />
+<img src="img/0.JPG" />
+</body>
+</html>

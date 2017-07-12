@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择筛选</title>
+	<style>
+		dd{
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var aDl=document.getElementsByTagName('dl');
+			var oUl=document.getElementsByTagName('ul')[0];
+
+			var loc='',
+				zhi='',
+				salary='';
+
+			for(var i=0;i<aDl.length;i++){
+				fnTab(aDl[i],i);
+			}
+
+			function fnTab(dl,index){
+				var aDd=dl.getElementsByTagName('dd');
+
+				for(var i=0;i<aDd.length;i++){
+					aDd[i].onclick=function(){
+						switch(index){
+							case 0:
+								loc=this.innerHTML;
+								break;
+							case 1:
+								zhi=this.innerHTML;
+								break;
+							case 2:
+								salary=this.innerHTML;
+								break;
+						}
+						oUl.innerHTML=loc +' '+zhi+' ' +salary;
+					}
+
+					/*aDd[i].onclick=function(){
+						var oLi=document.createElement('li');
+						oLi.innerHTML=this.innerHTML;
+
+						if(index==0){
+							if ( oUl.children[0] ) {
+								oUl.insertBefore( oLi, oUl.children[0] );
+							} else {
+								oUl.appendChild( oLi );
+							}
+						}else{
+							oUl.appendChild(oLi);
+						}
+					}*/
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<dl>
+	<dt>地区</dt>
+	<dd>东城</dd>
+	<dd>西城</dd>
+	<dd>朝阳</dd>
+	<dd>昌平</dd>
+</dl>
+<dl>
+	<dt>职位</dt>
+	<dd>美工设计</dd>
+	<dd>前端工程师</dd>
+	<dd>后台开发</dd>
+</dl>
+<dl>
+	<dt>薪资</dt>
+	<dd>4000</dd>
+	<dd>5000</dd>
+	<dd>6000</dd>
+</dl>
+<ul>
+	<!-- <li>sdkk</li> -->
+</ul>
+</body>
+</html>

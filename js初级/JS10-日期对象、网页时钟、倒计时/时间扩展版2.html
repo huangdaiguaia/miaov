@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			float: left;
+			position: relative;
+			height: 170px;
+			width: 123px;
+			overflow: hidden;
+		}
+		li{
+			list-style: none;
+			position: absolute;
+		}
+		/* .show{
+			top:0;
+		} */
+		.hide{
+			top:170px;
+			/*display: none;*/
+		}
+	</style>
+<script src="miaov.js"></script>
+<script>
+window.onload=function(){
+
+var aUl=document.getElementsByTagName('ul');
+var timer=null;
+var on=true;
+
+setInterval(fnTime,1000)
+fnTime();
+function fnTime(){
+	var myTime=new Date();
+	var iHours=myTime.getHours();
+	var iMin=myTime.getMinutes();
+	var iSec=myTime.getSeconds();
+	var str=toTwo(iHours)+" "+toTwo(iMin)+" "+toTwo(iSec);
+	//'21 42  04';
+	for ( var i=0; i<str.length; i++ ) {
+		if(str.charAt(i)==' '){
+			aUl[i].getElementsByTagName('img')[0].src='img/colon.JPG';
+			 // fnTab(i);
+		}else{
+			aUl[i].getElementsByTagName('img')[0].src="img/"+str.charAt(i)+".jpg";
+		}
+
+	}
+
+/*	function fnCh(i){
+		fnTab(i);                                                            //7
+		if(Number(str.charAt(i))==9){                        //7
+	 		fnTab(i-1);                                                     //6
+	 		if(str.charAt(i-1)+str.charAt(i)=="59"){      //6 7
+	 			fnTab(i-3);                                              //4
+	 		}
+		}
+	}
+	fnCh(7);
+	fnCh(4);*/
+
+	fnTab(7);
+	if(Number(str.charAt(7))==9){
+ 		fnTab(6);
+ 		if(str.charAt(6)+str.charAt(7)=="59"){
+ 			fnTab(4);
+
+			if(Number(str.charAt(4))==9){
+		 		fnTab(3);
+		 		if(str.charAt(3)+str.charAt(4)=="59"){
+		 			fnTab(1);
+
+	 				if(Number(str.charAt(1))==9){
+	 			 		fnTab(0);
+	 				}
+
+		 		}
+			}
+
+ 		}
+	}
+
+	function fnTab(i){
+	 	aUl[i].getElementsByTagName('img')[0].src="img/"+str.charAt(i)+".jpg";
+	 	aUl[i].getElementsByTagName('img')[1].src="img/"+(Number(str.charAt(i))+1)+".jpg";
+
+	 	doMove ( aUl[i].getElementsByTagName('li')[0], 'top', 5, -170,function(){
+	 			aUl[i].getElementsByTagName('li')[0].style.top="0px";
+				aUl[i].getElementsByTagName('img')[0].src="img/"+(Number(str.charAt(i))+1)+".jpg";
+	 	} );
+
+	 	doMove ( aUl[i].getElementsByTagName('li')[1], 'top', 5, 0 ,function(){
+	 			aUl[i].getElementsByTagName('li')[1].style.top="170px";
+	 	});
+	}
+
+	clearInterval(timer);
+	timer=setInterval(function(){
+		if(on){
+			aUl[2].getElementsByTagName('img')[0].src='img/colon.JPG';
+			aUl[5].getElementsByTagName('img')[0].src='img/colon.JPG';
+		}else{
+			aUl[2].getElementsByTagName('img')[0].src='img/colon2.JPG';
+			aUl[5].getElementsByTagName('img')[0].src='img/colon2.JPG';
+		}
+		on=!on;
+	},400);
+
+}
+function toTwo(n){
+	return n<10?'0'+n:''+n;
+}
+
+}
+</script>
+</head>
+<body>
+	<ul>
+		<li class="show">
+			<img src="img/0.jpg" alt="">
+		</li>
+		<li class="hide">
+			<img src="img/0.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/0.jpg" alt="">
+		</li>
+		<li class="hide">
+			<img src="img/0.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/colon.jpg" alt="">
+		</li>
+		<li class="hide">
+			<img src="img/colon2.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/0.jpg" alt="">
+		</li>
+		<li class="hide">
+			<img src="img/0.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/0.jpg" alt="">
+		</li>
+		<li class="hide">
+			<img src="img/0.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/colon.jpg" alt="">
+		</li>
+		<li class="hide">
+			<img src="img/colon2.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/0.jpg" alt="">
+		</li>
+		<li class="hide">
+			<img src="img/0.jpg" alt="">
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<img src="img/0.jpg" alt="">
+		</li>
+		<li class="hide">
+			<img src="img/0.jpg" alt="">
+		</li>
+	</ul>
+
+
+</body>
+</html>

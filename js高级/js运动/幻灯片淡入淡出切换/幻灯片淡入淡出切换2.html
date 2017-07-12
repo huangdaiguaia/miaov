@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>幻灯片淡入淡出切换</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#wrapper{
+			width: 520px;
+			height: 280px;
+			margin: 10px auto;
+			border: 1px solid  #ccc;
+			position: relative;
+		}
+		a{
+			text-decoration: none;
+			color:#fff;
+			background: #000;
+			display: block;
+			width: 50px;
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+			border-radius: 50%;
+			opacity:0.5;
+			filter:alpha(opacity=50);
+			font-size: 25px;
+			position: absolute;
+			top: 110px;
+		}
+		a:hover{
+			opacity: 0.8;
+			filter: alpha(opacity=80);
+		}
+		#lf{
+			left: 10px;
+		}
+		#rf{
+			right: 10px;
+		}
+		img{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+	<script src='move.js'></script>
+	<script>
+	//有时候会有bug
+	window.onload=function(){
+		var arr=[
+			'img/0.jpg',
+			'img/1.jpg',
+			'img/2.jpg',
+			'img/3.jpg',
+			'img/4.jpg',
+			'img/5.jpg'
+		];
+		var oImg1=document.getElementById('img1');
+		var oImg2=document.getElementById('img2');
+		var oBtn1=document.getElementById('lf');
+		var oBtn2=document.getElementById('rf');
+		var on =true;
+		index=0;
+		//初始化页面
+		oImg1.src=arr[0];
+		//oImg2.src=arr[1];
+		oImg1.style.opacity=1;
+		oImg2.style.opacity=0;
+
+		oBtn2.onclick=function(){
+			/*if(!on){return;}
+			on=false;*/
+
+			if(index==0){
+				oImg2.src=arr[index+1];
+			}
+
+			startMove(img1,{
+				opacity:0
+			});
+
+			startMove(img2,{
+				opacity:100
+			},function(){
+				index+=1;
+
+				oImg1.src=arr[index];
+
+				if(index==5){
+					index=-1;
+				}
+
+				oImg2.src=arr[index+1];
+
+				oImg1.style.opacity=1;
+				oImg2.style.opacity=0;
+				//onOff = true;
+			});
+		}
+
+		oBtn1.onclick=function(){
+			/*if(!on){return;}
+			on=false;*/
+
+			if(index==0){
+				oImg2.src=arr[5];
+				index=6;
+			}
+
+			//函数中执行回调函数 回调函数中不能再执行回调函数???
+			startMove(img1,{
+				opacity:0
+			});
+
+			startMove(img2,{
+				opacity:100
+			},function(){
+			//这里一定要放到回调函数里 不然这里和两个函数一起加载从上到下加载,加载完立即执行,但这里即使是后执行,也会先执行完毕[因为另外两个函数 是定时器 执行完需要一定时间]
+
+				index+=-1;
+
+
+				oImg1.src=arr[index];
+
+				if(index==0){
+					index=6;
+				}
+
+				oImg2.src=arr[index-1];
+
+				oImg1.style.opacity=1;
+				oImg2.style.opacity=0;
+				//onOff = true;
+			});
+		}
+
+
+	}
+	</script>
+</head>
+<body>
+<div id="wrapper">
+	<img src=" " alt="" id="img1">
+	<img src="" alt="" id="img2">
+	<a href="javascript:;" id="lf">&lt;</a>
+	<a href="javascript:;" id="rf">&gt;</a>
+</div>
+</body>
+</html>

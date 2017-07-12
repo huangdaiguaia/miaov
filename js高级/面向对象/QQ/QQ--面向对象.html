@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QQ</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#list{
+			width: 300px;
+			margin: 0 auto;
+		}
+		#list ul li{
+			/*width: 300px;*/
+			height: 30px;
+			line-height: 30px;
+			border:1px solid #ccc;
+			text-indent: 20px;
+			cursor: pointer;
+		}
+		h2{
+			height: 30px;
+			line-height: 30px;
+			font-weight: normal;
+			font-size: 19px;
+			border:1px solid #ccc;
+			text-indent: 20px;
+			background: url(img/ico1.gif) no-repeat 4px center;
+			cursor: pointer;
+		}
+		.active{
+			background: url(img/ico2.gif) no-repeat 4px center;
+		}
+		#list ul{
+			display: none;
+		}
+		.hover{
+			background: #ff0;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var qq=new Qq();
+		}
+		function Qq(){
+			var	oUl=document.getElementById('list');
+			this.aH2=document.getElementsByTagName('h2');
+			this.aUl=oUl.getElementsByTagName('ul');
+			var	 aLi=null;
+			this.arrLi=[];
+
+			_this=this;
+
+			// 点击h2发生
+			for(var i=0;i<this.aH2.length;i++){
+				this.aH2[i].index=i;
+				this.aH2[i].onclick=function(){
+					_this.titleChange(this);
+				}
+			}
+
+			// 取得li
+			for(var i=0;i<this.aUl.length;i++){
+				aLi=this.aUl[i].getElementsByTagName('li');
+
+				for(var j=0;j<aLi.length;j++){
+					this.arrLi.push( aLi[j] );
+				}
+			}
+			//点击li发生
+			for(var i=0;i<this.arrLi.length;i++){
+
+				this.arrLi[i].onclick=function(){
+					_this.li(this);
+				}
+			}
+
+		}
+
+		Qq.prototype.titleChange=function (oBtn){
+			for( var i=0; i<this.aH2.length; i++ ){
+				if( this.aH2[i] !=oBtn ){//this.arrLi[i] !=this  i != this.index                    //----------this
+					this.aUl[i].style.display = 'none';
+					this.aH2[i].className = '';
+				}
+			}
+
+			if(oBtn.className==""){                                                //----------this
+				oBtn.className="active";                                             //----------this
+				this.aUl[oBtn.index].style.display="block";                            //----------this
+			}else{
+				oBtn.className="";                                                       //----------this
+				this.aUl[oBtn.index].style.display="none";                                 //----------this
+			}
+		}
+
+		Qq.prototype.li=function (oBtn){
+			for(var i=0;i<this.arrLi.length;i++){
+				if(this.arrLi[i] !=oBtn){//i != this.index                                   //----------oBtn
+					this.arrLi[i].className='';
+				}
+			}
+			if(oBtn.className==''){                                      //----------this
+				oBtn.className='hover';                           //----------this
+			}else{
+				oBtn.className='';                                 //----------this
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li class="lis">
+			<h2>我的好友</h2>
+			<ul>
+				<li>张三</li>
+				<li>张三</li>
+				<li>张三</li>
+				<li>张三</li>
+				<li>张三</li>
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>企业好友</h2>
+			<ul>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+			</ul>
+		</li>
+		<li class="lis">
+		<h2>我的黑名单</h2>
+			<ul>
+				<li>张戏三</li>
+				<li>张的三</li>
+				<li>张 三</li>
+				<li>张都是三</li>
+				<li>张三</li>
+			</ul>
+		</li>
+
+	</ul>
+</body>
+</html>

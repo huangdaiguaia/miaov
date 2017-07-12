@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>延时消失的菜单</title>
+	<style>
+		.head{
+			width: 500px;
+			height: 600px;
+			border:1px solid #ccc;
+			margin: 10px auto;
+			border-radius: 5px;
+			position: relative;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			width: 99px;
+			float: left;
+			background: #0ff;
+			border-right: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+		}
+		li:hover{
+			background: #ff0;
+		}
+		a{
+			text-decoration: none;
+		}
+		#info ul{
+			display: none;
+		}
+
+		#list{
+			/* position: absolute; */
+		}
+		#info{
+			position: absolute;
+			top:50px;
+		}
+	</style>
+      <script>
+		window.onload=function(){
+			var oList=document.getElementById('list');
+			var aLi=oList.getElementsByTagName('li');
+			var oInfo=document.getElementById('info');
+			var aUl=oInfo.getElementsByTagName('ul');
+			var timer=null;
+
+			/*document.getElementById('box1').onmouseover = function (e) {
+			     if (!e) e = window.event;
+			     var reltg = e.relatedTarget ? e.relatedTarget : e.fromElement;
+			     while (reltg && reltg != this) reltg = reltg.parentNode;
+			     if (reltg != this) {
+				      // 这里可以编写 onmouseenter 事件的处理代码
+				      alert('111');
+			     }
+			}*/
+
+			function show(that){
+				clearTimeout( timer );
+				aUl[that].style.display = 'block';
+			}
+			function show2(that){
+				aUl[that].style.display = 'block';
+			}
+			function hide(that){
+				// var that= this.index;
+				timer = setTimeout(function(){
+					aUl[that].style.display = 'none';
+				}, 200);
+			}
+			function hide2(that){
+				aUl[that].style.display = 'none';
+			}
+
+			for(var i=0;i<aLi.length-1;i++){
+				aLi[i].index=i;
+
+				aLi[i].onmouseover = function (e) {
+				     if (!e) e = window.event;
+				     var reltg = e.relatedTarget ? e.relatedTarget : e.fromElement;
+				     while (reltg && reltg != this) reltg = reltg.parentNode;
+				     if (reltg != this) {
+					      // 这里可以编写 onmouseenter 事件的处理代码
+					      var that=this.index;
+					      show2(that);
+				     }
+				}
+
+				aLi[i].onmouseout = function (e) {
+				     if (!e) e = window.event;
+				     var reltg = e.relatedTarget ? e.relatedTarget : e.toElement;
+				     while (reltg && reltg != this) reltg = reltg.parentNode;
+				     if (reltg != this) {
+					      // 这里可以编写 onmouseenter 事件的处理代码
+					      var that=this.index;
+					      hide(that);
+				     }
+				}
+			}
+
+			for(var j=0;j<aUl.length;j++){
+				aUl[j].index=j;
+				aUl[j].onmouseover = function (e) {
+				     if (!e) e = window.event;
+				     var reltg = e.relatedTarget ? e.relatedTarget : e.toElement;
+				     while (reltg && reltg != this) reltg = reltg.parentNode;
+				     if (reltg != this) {
+					      // 这里可以编写 onmouseenter 事件的处理代码
+					      var that=this.index;
+					     show(that);
+				     }
+				}
+
+				aUl[j].onmouseout = function (e) {
+				     if (!e) e = window.event;
+				     var reltg = e.relatedTarget ? e.relatedTarget : e.fromElement;
+				     while (reltg && reltg != this) reltg = reltg.parentNode;
+				     if (reltg != this) {
+					      // 这里可以编写 onmouseenter 事件的处理代码
+					      var that=this.index;
+					      hide2(that);
+				     }
+				}
+
+			}
+
+		}
+	</script>
+</head>
+<body>
+<div class="head">
+	<ul id="list">
+		<li><a href="#">首页</a></li>
+		<li><a href="#">作品</a></li>
+		<li><a href="#">博客</a></li>
+		<li><a href="#">关于我们</a></li>
+		<li><a href="#">更多</a></li>
+	</ul>
+
+	<div id="info">
+		<ul>
+			<li><a href="#">最近更新</a></li>
+			<li><a href="#">活动</a></li>
+			<li><a href="#">购买</a></li>
+			<li><a href="#">留学</a></li>
+			<li><a href="#">是的</a></li>
+		</ul>
+		<ul>
+			<li><a href="#">定时器</a></li>
+			<li><a href="#">如果</a></li>
+			<li><a href="#">是由</a></li>
+			<li><a href="#">控制的</a></li>
+			<li><a href="#">enhen</a></li>
+		</ul>
+		<ul>
+			<li><a href="#">一定</a></li>
+			<li><a href="#">用户要</a></li>
+			<li><a href="#">留学</a></li>
+			<li><a href="#">先关后开</a></li>
+		</ul>
+		<ul>
+			<li><a href="#">最近更新</a></li>
+			<li><a href="#">活动</a></li>
+			<li><a href="#">是的</a></li>
+		</ul>
+	</div>
+
+	<!-- <ul id="info">
+		<li>
+			<ul>
+				<li><a href="#">最近更新</a></li>
+				<li><a href="#">活动</a></li>
+				<li><a href="#">购买</a></li>
+				<li><a href="#">留学</a></li>
+				<li><a href="#">是的</a></li>
+			</ul>
+		</li>
+		<li>
+			<ul>
+				<li><a href="#">定时器</a></li>
+				<li><a href="#">如果</a></li>
+				<li><a href="#">是由</a></li>
+				<li><a href="#">控制的</a></li>
+				<li><a href="#">是的</a></li>
+			</ul>
+		</li>
+		<li>
+			<ul>
+				<li><a href="#">一定</a></li>
+				<li><a href="#">用户要</a></li>
+				<li><a href="#">留学</a></li>
+				<li><a href="#">先关后开</a></li>
+			</ul>
+		</li>
+		<li>
+			<ul>
+				<li><a href="#">最近更新</a></li>
+				<li><a href="#">活动</a></li>
+				<li><a href="#">是的</a></li>
+			</ul>
+		</li>
+	</ul> -->
+
+
+</div>
+
+</body>
+</html>

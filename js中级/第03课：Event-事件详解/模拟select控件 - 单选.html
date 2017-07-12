@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟select控件 - 单选</title>
+	<style>
+		li{
+			list-style: none;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrap{
+			width: 200px;
+			margin: 30px auto;
+		}
+		#text{
+			height: 30px;
+			width: 200px;
+			border: 1px #999 solid;
+			line-height: 30px;
+			text-indent: 10px;
+		}
+		ul{
+			height: 30px;
+			width: 200px;
+		}
+		li{
+			line-height: 30px;
+			text-indent: 10px;
+			height: 30px;
+			width: 200px;
+			border: 1px #999 solid;
+			border-top: none;
+		}
+		li:hover{
+			background: #ff0;
+		}
+		ul{
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oDiv=document.getElementById('text');
+			var oUl=document.getElementsByTagName('ul')[0];
+			var aLi=document.getElementsByTagName('li');
+
+			oDiv.onclick=function(ev){
+				var ev=ev||event;
+				ev.cancelBubble=true;//阻止事件冒泡
+
+				oUl.style.display='block';
+
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].onclick=function(){
+						oDiv.innerHTML=this.innerHTML;
+						// break;
+						// return;
+					}
+				}
+
+			}
+
+			document.onclick=function(){
+				oUl.style.display='none';
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<div id="text">仿宋体</div>
+	<ul>
+		<li>黑体</li>
+		<li>宋体</li>
+		<li>微软雅黑</li>
+		<li>新媒体</li>
+		<li>那个题</li>
+	</ul>
+</div>
+</body>
+</html>

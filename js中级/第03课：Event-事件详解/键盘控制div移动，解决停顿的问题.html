@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>键盘控制div移动，解决停顿的问题</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			background: #ff0;
+			position: absolute;
+		}
+	</style>
+	<script>
+		/*window.onload=function(){
+			var oDiv=document.getElementsByTagName('div')[0];
+			var timer=null;
+
+			// clearInterval(timer);
+			timer=setInterval(function fn(attr,dir){
+				if(attr=='left'){
+					oDiv.style[attr]= oDiv.offsetLeft+'dir'+20+'px';
+				}else if(attr=='top'){
+					oDiv.style[attr]= oDiv.offsetTop+'dir'+20+'px';//dir+num+'px';//
+				}else{
+					return;
+				}
+			},50);
+
+			function fn(attr,dir){
+				if(attr=='left'){
+					oDiv.style[attr]= oDiv.offsetLeft+'dir'+20+'px';
+				}else if(attr=='top'){
+					oDiv.style[attr]= oDiv.offsetTop+'dir'+20+'px';//dir+num+'px';//
+				}else{
+					return;
+				}
+			}
+
+			document.onkeydown=function(ev){
+				var ev=ev||event;
+				//console.log(ev.keyCode);
+				switch(ev.keyCode){
+					case 37:
+						fn('left',"-");      //不能这样一直调用定时器 会造成定时器的叠加,而clearInterval(timer);的话  document.onkeydown这个事件好像是每隔一定时间查看一次的
+						break;
+					case 38:
+						fn('top',"-");
+						break;
+					case 39:
+						fn('left',"+");
+						break;
+					case 40:
+						fn('top',"+");
+						break;
+
+				}
+			}
+
+			document.onkeyup=function(ev){
+				var ev=ev||event;
+				clearInterval(timer);
+			}
+		}*/
+		window.onload = function(){
+
+			var oDiv=document.getElementsByTagName('div')[0],
+				key = { l: null, t: null, r: null, b: null };
+			//定时器[发动机]  键盘[方向盘]
+			// 发动机一直开着 方向盘决定方向
+			setInterval(function(){
+				if(key.l){
+					oDiv.style.left = oDiv.offsetLeft - 20 + 'px';
+				}else if(key.t){
+					oDiv.style.top = oDiv.offsetTop - 20 + 'px';
+				}else if(key.r){
+					oDiv.style.left = oDiv.offsetLeft + 20 + 'px';
+				}else if(key.b){
+					oDiv.style.top = oDiv.offsetTop + 20 + 'px';
+				}else{
+					return;
+				}
+			}, 50)
+
+			document.onkeydown = function(ev){
+				var ev = ev || event;
+				switch(ev.keyCode){
+					case 37:
+						key.l = true;
+						break;
+					case 38:
+						key.t = true;
+						break;
+					case 39:
+						key.r = true;
+						break;
+					case 40:
+						key.b = true;
+						break;
+				}
+			}
+
+			document.onkeyup = function(ev){
+				var ev = ev || event;
+				switch(ev.keyCode){
+					case 37:
+						key.l = false;
+						break;
+					case 38:
+						key.t = false;
+						break;
+					case 39:
+						key.r = false;
+						break;
+					case 40:
+						key.b = false;
+						break;
+				}
+			}
+
+		}
+	</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

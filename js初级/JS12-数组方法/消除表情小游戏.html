@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>划掉25个赢  掉下5个输</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			color: #333;
+		}
+		li{
+			list-style: none;
+		}
+		#wrap{
+			width: 501px;
+			height: 600px;
+			/*border: 1px #999 solid;*/
+			background: #eee;
+			margin: 10px auto;
+		}
+		#title{
+			height: 70px;
+			border: 1px solid #777;
+			border-bottom: none;
+			padding-bottom: 20px;
+		}
+		#title h4{
+			line-height: 50px;
+			/*text-align: center;*/
+			padding-left: 50px;
+		}
+		#title h4 .titSm{
+			/*line-height: 30px;*/
+			/*text-align: center;*/
+
+			/*padding-left: 100px;*/
+			font-size: 14px;
+			font-weight: normal;
+		}
+		button{
+			margin-left: 30px;
+			/*background: #fff;*/
+			width: 100px;
+		}
+		#title .scroe{
+			margin-left: 40px;
+		}
+		em{
+			font-style: normal;
+			color: #c00;
+			margin: 0 2px;
+		}
+		#qq{
+			/*margin-top: 20px;*/
+			width: 500px;
+			height: 506px;
+			border: 1px solid #777;
+			position: relative;
+			overflow: hidden;
+		}
+		img{
+			/*display: none;*/
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+	</style>
+	<script src='miaov.js'></script>
+	<script>
+		// 1.随机选一个表情
+		// 2.随机选一个left
+		// 3.改变top
+		// 4.如果点到了,则消失 并计算得分
+		// 5.没点到,则继续掉 到一定高度消失 计算的得分
+
+		// 6.停--
+		// 7.越掉越快      dropSpeed +=0.5;
+
+		/*
+			保证一直只有一个表情在屏幕上 这样就不能用定时器
+			所以选用回调函数
+		*/
+		window.onload=function(){
+			var oBtn=document.getElementsByTagName('button');
+			var aEm=document.getElementsByTagName('em');
+			var oImg=document.getElementsByTagName('img')[0];
+			var oQq=document.getElementById('qq');
+			var arrQQ = ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png', 'img/5.png', 'img/6.png', 'img/7.png', 'img/8.png', 'img/9.png', 'img/10.png', 'img/11.png'];
+
+			var dropSpeed=1;
+			var scroe=0;
+			var loss=0;
+
+			oBtn[0].onclick=function(){
+				oBtn[0].innerHTML='游戏进行中...';
+
+				init();
+				fnDrop();
+			};
+			oBtn[1].onclick=function(){
+				oBtn[0].innerHTML='游戏进行中...';
+
+				init();
+				fnDrop();
+			};
+
+			function init(){
+				dropSpeed=1;
+				scroe=0;
+				loss=0;
+				aEm[0].innerHTML=scroe;
+				aEm[1].innerHTML=loss;
+			}
+
+			function fnDrop(){
+				var ranNum=Math.round( Math.random()*10) ;
+				var ranLeft=Math.round( Math.random()*475) ;
+				oImg.src=arrQQ[ranNum];
+				oImg.style.left=ranLeft+'px';
+				oImg.style.top=0+'px';
+
+				dropSpeed +=0.5;
+
+				doMove(oImg,"top",dropSpeed,505,function(){
+					loss++;
+					aEm[1].innerHTML=loss;
+					shake ( oQq, 'left' ,function(){
+						if(loss==5){
+							alert('你败了-_-');
+							oBtn[0].innerHTML='重新开始';
+							return ;
+						}
+						fnDrop();
+					});
+				});
+
+				oImg.onmouseover=function(){
+					clearInterval(oImg.doMove);                //-----------------------
+					shake ( this, 'left' ,function(){
+						// oImg.style.display="none";         //后患....
+						scroe++;
+						aEm[0].innerHTML=scroe;
+						if(scroe==25){
+							alert('你赢了-_-');
+							oBtn[0].innerHTML='重新开始';
+							return ;
+						}
+						fnDrop();
+					});
+				}
+
+			}
+
+
+		}
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<div id="title">
+		<h4>你的鼠标有多快<span class="titSm"> --- 单击开始游戏后,会掉下QQ表情,点击消灭它!</span></h4>
+
+		<div class="begin">
+		<button>开始游戏</button>
+		<button>重新开始</button>
+		<span class="scroe">得分<em>0</em>分</span>
+		<span class="scroe">失分<em>0</em>分</span>
+		</div>
+	</div>
+	<div id="qq">
+		<img src="" alt=""><!-- img/1.png -->
+	</div>
+</div>
+</body>
+</html>

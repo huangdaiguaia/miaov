@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		.sx{
+			width: 300px;
+			height: 364px;
+			border: 1px solid #000;
+			margin: 10px auto;
+		}
+		/*图片间隙--------------------------*/
+		img{
+			width: 300px;
+			height: 200px;
+			margin: 0;
+		}
+		#pic{
+			width: 300px;
+			height: 300px;
+			overflow: hidden;
+			position: relative;
+		}
+		#picList{
+			position: absolute;
+			top:0;/* -515*/
+		}
+
+		button{
+			width: 300px;
+			height: 30px;
+			background: #E7EFEF;
+			border:0;
+			outline:none;
+			text-align: center;
+			position: relative;
+		}
+		i{
+			width: 13px;
+			height: 13px;
+			display: block;
+			position: absolute;
+			left: 143px;
+			top:9px;
+		}
+		.icon1{
+			background: url(img/icon1.png) no-repeat;
+		}
+		.icon2{
+			background: url(img/icon2.png) no-repeat;
+		}
+		.clearfix:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var aBtn=document.getElementsByTagName('button');
+			var oPicList=document.getElementById('picList');
+			var timer=null;
+			var top=0;
+
+			/*
+				-1  -310
+				1     0
+			*/
+
+			function doMove( dir,target){
+				clearInterval(timer);//这个定时器因为不可能重复点击 所以不加也没问题
+				timer=setInterval(function(){
+					top+=dir;
+
+					oPicList.style.top=top+"px";
+
+					if(top==target){
+						clearInterval(timer);
+					}
+				},10)
+			}
+
+			aBtn[0].onmousedown=function(){
+				doMove(-1,-310);
+			}
+			aBtn[0].onmouseup=function(){
+				clearInterval(timer);
+			}
+
+			aBtn[1].onmousedown=function(){
+				doMove(1,0);
+			}
+			aBtn[1].onmouseup=function(){
+				clearInterval(timer);
+			}
+		}
+	</script>
+</head>
+<body>
+<div class="sx clearfix">
+	<button><i class="icon1"></i></button>
+	<div  id="pic">
+		<div id="picList">
+			<img src="img/1.jpg" alt="">
+			<img src="img/3.jpg" alt="">
+			<img src="img/4.jpg" alt="">
+		</div>
+	</div>
+	<button><i class="icon2"></i></button>
+</div>
+</body>
+</html>

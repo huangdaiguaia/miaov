@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>为留言添加批量删除</title>
+	<style>
+		li{
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var aInp=document.getElementsByTagName('input');
+			var oUl=document.getElementsByTagName('ul')[0];
+			var aLi=document.getElementsByTagName('li');
+			//var len=0;
+			//var flag=true;
+
+			aInp[1].onclick=function(){
+				// console.log(aLi.length);
+
+				var oLi=document.createElement('li');
+				oLi.innerHTML=aInp[0].value;
+				aInp[0].value='';
+
+				if(oUl.children[0]){
+					oUl.insertBefore(oLi,oUl.children[0]);
+					//len=aLi.length;
+					console.log(aLi.length);
+				}else{
+					oUl.appendChild(oLi);
+				}
+
+				//必须写在这个onclick 里面
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].flag=true;
+					aLi[i].onclick=function(){
+						if(this.flag){
+							this.style.backgroundColor='#ff0';
+							this.flag=0;
+							this.mark=1;
+						}else{
+							this.style.backgroundColor='';
+							this.flag=1;
+							this.mark=0;
+						}
+					}
+				}
+
+			}
+
+
+			aInp[2].onclick=function(){
+				//console.log(len);   这个方案不行 有bug 因为不仅length是动态的 [i]也是动态的
+				for(var i=0;i<aLi.length;i++){
+					if(aLi[i].mark){
+						//console.log(aLi[i].innerHTML);
+						oUl.removeChild( aLi[i]);
+						i--;//关于为什么要++ 又要--;因为在if条件不满足的时候仍要++[这个时候却不用--]
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<input type="text">
+<input type="button" value="添加">
+<input type="button" value="批量删除">
+<ul>
+
+</ul>
+</body>
+</html>

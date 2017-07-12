@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		.wrap{
+			width: 900px;
+			border: 1px #777 solid;
+			margin: 20px auto;
+			padding: 20px;
+		}
+		.box{
+			width: 378px;
+			height: 200px;
+			float: left;
+			border: #777 1px dotted;
+			padding: 10px;
+		}
+		#middle{
+			width: 100px;
+			float: left;
+		}
+		.clear:after{
+			content: ' ';
+			display: block;
+			clear: both;
+		}
+		#left{
+			width: 398px;
+			height: 220px;
+			background: #efefd6;
+			padding: 0;
+		}
+		#right{
+			background: #63eff7;
+		}
+		#middle p{
+			width: 80px;
+			background: #f76300;
+			margin: 0 auto;
+			padding: 3px;
+			color: #fff;
+		}
+		#middle span{
+			width: 100px;
+			display: inline-block;
+			/*margin: 8px 37px ;*/
+			/*margin: 10px auto;*/
+			text-align: center;
+		}
+		#middle ul{
+			margin:0 10px;
+		}
+		#middle li{
+			width: 8px;
+			height: 15px;
+			float: left;
+			background: #ff0;
+			margin-right: 2px;
+		}
+		textarea{
+			width: 377px;
+			height: 200px;
+			border: none;
+			background: #efefd6;
+			/*text-indent: 20px;*/
+			padding: 10px;
+			font-size: 16px;
+			line-height: 21px;
+			font-family: 微软雅黑;
+		}
+		#right p{
+			font-size: 16px;
+			line-height: 21px;
+			font-family: 微软雅黑;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oM=document.getElementById('middle');
+			var oBtn=oM.getElementsByTagName('p')[0];
+			var aLi=oM.getElementsByTagName('li');
+			var oSpan=oM.getElementsByTagName('span')[0];
+
+			var oText=document.getElementsByTagName('textarea')[0];
+			var oR=document.getElementById('right');
+			var oP=oR.getElementsByTagName('p')[0];
+			var timer=null;
+
+
+
+			oBtn.onclick=function(){
+				var text=oText.value;
+				oP.innerHTML="";
+				var num=0;
+			      var len=0;
+
+				clearInterval(timer);
+				this.style.backgroundColor="#e7cece";
+				var that=this;
+				timer=setInterval(function(){
+					console.log(oText.value.length);
+					oP.innerHTML+=oText.value.charAt(0);
+					oText.value=oText.value.substring(1);
+					if(oText.value==""){
+						clearInterval(timer);
+					}
+
+					// 方案一
+					/*for(var i=0;i<aLi.length;i++){
+						aLi[i].style.backgroundColor="#ff0";
+					}
+					aLi[num].style.backgroundColor="#c00";
+					num++;
+					if(num==8){num=0;}*/
+
+					// 方案二
+					/*aLi[num].style.backgroundColor="#ff0";
+					num++;
+					if(num==8){num=0;}
+					aLi[num].style.backgroundColor="#c00";*/
+
+					// 方案三
+					aLi[len%8].style.backgroundColor="#ff0";
+
+					len++;
+
+					aLi[len%8].style.backgroundColor="#c00";
+
+					// len++;
+					oSpan.innerHTML=len+"/"+text.length;
+					if(len==text.length){
+						for(var i=0;i<aLi.length;i++){
+							aLi[i].style.backgroundColor="#ff0";
+						}
+						that.style.backgroundColor="#f76300";
+					}
+
+				},200);
+
+			}
+		}
+	</script>
+</head>
+<body>
+<div class="wrap clear">
+	<div id="left" class="box">
+		<textarea>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……</textarea>
+	</div>
+	<div id="middle">
+		<p>把文字右移</p>
+		<span>0/0</span>
+		<ul id="bar">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div id="right" class="box">
+		<p></p>
+	</div>
+</div>
+</body>
+</html>

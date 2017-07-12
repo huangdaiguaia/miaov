@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡面向对象</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#div1{
+			width: 500px;
+			height: 500px;
+			margin: 10px auto;
+		}
+		.active{
+			background: #0ff;
+		}
+		#div1 div{
+			width: 200px;
+			height: 200px;
+			border: 1px solid;
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oTab=new TabSwitch('div1');
+			oTab.autoplay();           //
+		}
+		function TabSwitch(id){
+			var oDiv = document.getElementById(id);
+			this.aInput = oDiv.getElementsByTagName('input');
+			this.aDiv = oDiv.getElementsByTagName('div');
+			this.iNow = 0;              //
+
+			var _this=this;
+			for(var i=0; i<this.aInput.length; i++){
+				this.aInput[i].index = i;
+				this.aInput[i].onclick =function(){
+					_this.tab(this);
+				};
+			}
+		}
+
+		TabSwitch.prototype.tab=function (oBtn){
+			for(var i=0; i<this.aInput.length; i++){
+				this.aInput[i].className = '';
+				this.aDiv[i].style.display = 'none';
+			}
+			oBtn.className = 'active';
+			this.aDiv[oBtn.index].style.display = 'block';
+			this.iNow = oBtn.index;         //
+		}
+
+		TabSwitch.prototype.autoplay = function(){
+			var _this = this;
+			clearInterval(_this.timer);
+			_this.timer = setInterval(function(){       //这里不用_this不行
+
+				_this.iNow++;                                       //
+
+				if (_this.iNow == _this.aInput.length){
+					_this.iNow = 0;
+				}
+
+				for(var i=0; i<_this.aInput.length; i++){
+					_this.aInput[i].className = '';
+					_this.aDiv[i].style.display = 'none';
+				}
+
+				_this.aInput[_this.iNow].className = 'active';
+				_this.aDiv[_this.iNow].style.display = 'block';
+
+			}, 1000);
+		}
+	</script>
+</head>
+<body>
+<div id="div1">
+	<input class="active" type="button" value="教育">
+	<input type="button" value="政治">
+	<input type="button" value="经济">
+	<div style="display:block">宿主对象</div>
+	<div>宿主:生活的环境</div>
+	<div>js:浏览器提供的对象</div>
+</div>
+</body>
+</html>

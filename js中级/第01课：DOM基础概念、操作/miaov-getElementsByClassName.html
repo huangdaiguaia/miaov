@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			var oUl1=document.getElementById('ul1');
+			var oUl2=document.getElementById('ul2');
+
+			var aLi=getElementsByClassName(oUl2,'li','box');
+			//alert(aLi.length);
+			console.log(aLi);
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].style.background='red';
+			}
+
+			function getElementsByClassName(parent,tagName,className){
+				var aEls=parent.getElementsByTagName(tagName);
+				var arr=[];
+
+				for(var i=0;i<aEls.length;i++){
+					var aClassName=aEls[i].className.split(' ');
+					for(var j=0;j<aClassName.length;j++){
+						if(aClassName[j]==className){
+							arr.push(aEls[i]);
+							break;
+						}
+					}
+				}
+				return arr;
+			};
+
+		}
+	</script>
+</head>
+<body>
+<ul id="ul1">
+	<li>111111</li>
+	<li class="box box">2222</li>
+	<li class="box1">33333333</li>
+	<li class="box box2">444444444</li>
+</ul>
+<ul id="ul2">
+	<li>111111</li>
+	<li class="box box">2222</li>
+	<li class="box1">33333333</li>
+	<li class="box box2">444444444</li>
+</ul>
+<div class="div1">
+	<p class="box">pppppppp</p>
+</div>
+</body>
+</html>

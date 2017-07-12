@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>为数组编写方法indexOf</title>
+	<script>
+		/*var str = '妙味课堂-WWW.miaov.com';
+		alert(str.indexOf('m', 10));      // 17
+		alert(str.lastIndexOf('o'));     // 16*/
+
+		var arr=[0,1,2,3,4,10,5,6,7,8,9,];
+
+		function indexOfArr(arr,a){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i]==a){
+					return i;
+				}
+			}
+		}
+		// indexOfArr(arr,5);
+		alert(indexOfArr(arr,5));
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>查找、替换、删除</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#wrap{
+			width: 540px;
+			height: 450px;
+			margin: 20px auto;
+			border: 1px #ccc solid;
+			background: #eee;
+			padding: 20px;
+		}
+		p{
+			width: 400px;
+			line-height: 30px;
+			background: #fff;
+			padding: 20px;
+			float: left;
+		}
+		#btn{
+			float: left;
+			margin-left: 10px;
+		}
+		#bottom li{
+			width: 70px;
+			height: 30px;
+			background: #ccc;
+			line-height: 30px;
+			margin-bottom: 2px;
+			text-align: center;
+			color:#E01536;
+		}
+		.hide{
+			display: none;
+		}
+		.clear:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		#top{
+			background: #E7E7B5;
+			border:3px solid #E71063;
+			margin-top: 30px;
+			padding: 20px;
+		}
+		#top .title{
+			height: 30px;
+			border-bottom: 2px solid #E73100;
+			margin-bottom: 10px;
+			position: relative;
+		}
+		#top h4{
+			float: left;
+			width: 60px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+		}
+		#top h4.active{
+			background: #E73100;
+		}
+		#top i{
+			position: absolute;
+			right: -10px;
+			top: -18px;
+		}
+		#top input{
+			height: 20px;
+		}
+		span{
+			background: #0ff;
+			padding: 2px 5px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBtn=document.getElementById('btn');
+			var aBtnLi=oBtn.getElementsByTagName('li');
+			var oTop=document.getElementById('top');
+			var aTopLi=oTop.getElementsByTagName('li');
+			var aH4=oTop.getElementsByTagName('h4');
+			var oI=document.getElementsByTagName('i')[0];
+			var aInp=document.getElementsByTagName('input');
+			var oP=document.getElementsByTagName('p')[0];
+
+			function fnIni(){
+				aBtnLi[0].onclick=function(){
+					for(var i=1;i<aBtnLi.length;i++){
+						aBtnLi[i].className='';
+					}
+				}
+				oI.onclick=function(){
+					oTop.className="hide";
+				}
+
+				aBtnLi[1].onclick=function(){
+					oTop.className="";
+					fnh0();
+				}
+
+				aBtnLi[2].onclick=function(){
+					oTop.className="";
+					fnh1();
+				}
+
+				aH4[0].onclick=function(){
+					fnh0();
+				}
+				aH4[1].onclick=function(){
+					fnh1();
+				}
+				function fnh0(){
+					aH4[0].className='active';
+					aH4[1].className='';
+					aTopLi[0].className="";
+					aTopLi[1].className="hide";
+				}
+				function fnh1(){
+					aH4[0].className='';
+					aH4[1].className='active';
+					aTopLi[0].className="hide";
+					aTopLi[1].className="";
+				}
+			}
+			fnIni();
+
+			aInp[1].onclick=function(){
+				var str=aInp[0].value;
+
+				oP.innerHTML = oP.innerHTML.split(str).join('<span>'+str+'</span>');
+			}
+			aInp[4].onclick=function(){
+				var str=aInp[2].value;
+				var newStr = aInp[3].value;
+
+				oP.innerHTML = oP.innerHTML.split(str).join('<span>'+newStr+'</span>');
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="wrap" >
+	<div id="bottom" class="clear">
+		<p>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……
+		2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……</p>
+		<ul id="btn">
+			<li>展开</li>
+			<li class="hide">查找</li>
+			<li class="hide">替换</li>
+		</ul>
+	</div>
+	<div id="top" class="hide">
+		<div class="title">
+			<h4 class="active">查找</h4>
+			<h4>替换</h4>
+			<i>X</i>
+		</div>
+		<ul id="search">
+			<li>
+				<input type="text">
+				<input type="button" value="查找">
+			</li>
+			<li class="hide">
+				<input type="text">
+				<input type="text">
+				<input type="button" value="替换">
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

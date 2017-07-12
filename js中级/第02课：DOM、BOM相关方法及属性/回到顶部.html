@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>回到顶部</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			position: fixed;
+			right: 0;
+			bottom: 0;
+			background: #ff0;
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oDiv=document.getElementsByTagName('div')[0];
+			document.body.style.height='2000px';
+
+			window.onscroll=function(){
+				var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+				var clientHeight =document.documentElement.clientHeight;
+				if(scrollTop>clientHeight){
+					oDiv.style.display='block';
+				}
+			}
+
+			oDiv.onclick=function(){
+				document.documentElement.scrollTop=document.body.scrollTop=0;
+			}
+		}
+	</script>
+</head>
+<body>
+<ul class="nav">
+	<li class="nav-item1"><a href="">首页</a></li>
+	<li class="nav-item2"><a href="">公司简介</a></li>
+	<li class="nav-item3"><a href="">公司动态</a></li>
+	<li class="nav-item4"><a href="">关于我们</a></li>
+	<li class="nav-item5"><a href="">联系我们</a></li>
+	<li class="nav-item1"><a href="">首页</a></li>
+	<li class="nav-item2"><a href="">公司简介</a></li>
+	<li class="nav-item3"><a href="">公司动态</a></li>
+	<li class="nav-item4"><a href="">关于我们</a></li>
+	<li class="nav-item5"><a href="">联系我们</a></li>
+	<li class="nav-item1"><a href="">首页</a></li>
+	<li class="nav-item2"><a href="">公司简介</a></li>
+	<li class="nav-item3"><a href="">公司动态</a></li>
+	<li class="nav-item4"><a href="">关于我们</a></li>
+	<li class="nav-item5"><a href="">联系我们</a></li>
+	<li class="nav-item1"><a href="">首页</a></li>
+	<li class="nav-item2"><a href="">公司简介</a></li>
+	<li class="nav-item3"><a href="">公司动态</a></li>
+	<li class="nav-item4"><a href="">关于我们</a></li>
+	<li class="nav-item5"><a href="">联系我们</a></li>
+	<li class="nav-item1"><a href="">首页</a></li>
+	<li class="nav-item2"><a href="">公司简介</a></li>
+	<li class="nav-item3"><a href="">公司动态</a></li>
+	<li class="nav-item4"><a href="">关于我们</a></li>
+	<li class="nav-item5"><a href="">联系我们</a></li>
+	<li class="nav-item1"><a href="">首页</a></li>
+	<li class="nav-item2"><a href="">公司简介</a></li>
+	<li class="nav-item3"><a href="">公司动态</a></li>
+	<li class="nav-item4"><a href="">关于我们</a></li>
+	<li class="nav-item5"><a href="">联系我们</a></li>
+	<li class="nav-item1"><a href="">首页</a></li>
+	<li class="nav-item2"><a href="">公司简介</a></li>
+	<li class="nav-item3"><a href="">公司动态</a></li>
+	<li class="nav-item4"><a href="">关于我们</a></li>
+	<li class="nav-item5"><a href="">联系我们</a></li>
+	<li class="nav-item1"><a href="">首页</a></li>
+	<li class="nav-item2"><a href="">公司简介</a></li>
+	<li class="nav-item3"><a href="">公司动态</a></li>
+	<li class="nav-item4"><a href="">关于我们</a></li>
+	<li class="nav-item5"><a href="">联系我们</a></li>
+</ul>
+<div>
+</div>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时抢购商品[左右晃]</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	.wrap{
+		width: 686px;
+		/*height: 350px;*/
+		border: 1px #ccc solid;
+		margin: 20px auto;
+		padding: 10px;
+	}
+	#img{
+		height: 350px;
+		position: relative;
+	}
+	#img h2{
+		font-size: 18px;
+		font-weight: normal;
+		line-height: 30px;
+		text-indent: 10px;
+		border-bottom: 3px solid #ccc;
+	}
+	#imgList{
+		width: 686px;
+		height: 350px;
+		position: relative;
+		position: absolute;
+		top:30px;
+	}
+	#img li{
+		width: 158px;
+		height: 310px;
+		background: #fff;
+		padding:5px;
+		border-right: 2px solid #ccc;
+		position: absolute;
+		top:3px;
+	}
+	#img li:last-child{
+		border-right: none;
+	}
+	#img input{
+		width: 130px;
+		margin: 0 0px 10px 0;
+		/*font-size: 12px;*/
+	}
+	#img span{
+		font-weight: bold;
+		color:#390808;
+	}
+	#img button{
+		background: #fff;
+		color:#390808;
+		border: none;
+		font-weight: bold;
+		font-size: 12px;
+		/*margin-left: 2px;*/
+	}
+	#img p{
+		color:#555;
+		font-size: 14px;
+		padding-bottom: 5px;
+	}
+	.clear:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	#price h2{
+		font-size: 18px;
+		width: 250px;
+		line-height: 35px;
+		text-indent: 10px;
+		float: left;
+		font-weight: normal;
+	}
+	#price #title{
+		background: #ccc;
+		margin-top: 20px;
+	}
+	#price p{
+		font-size: 18px;
+		color: #390808;
+		margin:10px;
+	}
+	#price img{
+		width: 80px;
+		height: 65px;
+	}
+	#price li{
+		height: 75px;
+		background: #ccc;
+		margin-top: 10px;
+		display: none;
+	}
+	#price  li span{
+		line-height: 75px;
+		height: 75px;
+		width: 250px;
+		text-indent: 10px;
+		display: inline-block;
+		vertical-align: top;
+	}
+	#price img{
+		margin-top: 5px;
+		border:1px solid #390808;
+	}
+
+	 .hide{
+	 	float: left;
+		display: none;
+		width: 170px;
+		height: 320px;
+		vertical-align: top;
+	}
+
+	</style>
+	<script>
+	window.onload=function(){
+	var oImgList=document.getElementById('imgList');
+	var oPriceList=document.getElementById('priceList');
+	var oPrice=document.getElementById('price');
+	var aImgLi=oImgList.getElementsByTagName('li');
+	var aPriceLi=oPriceList.getElementsByTagName('li');
+	// var aImgStrong=oImgList.getElementsByTagName('strong');
+	var aStrong=oPriceList.getElementsByTagName('strong');
+	var aP=oPrice.getElementsByTagName('p')[0];
+	var oSpan=aP.getElementsByTagName('span')[0];
+	var aImg=document.getElementsByClassName('hide');
+	// var oHide=document.getElementById('hide');
+	var num=0;
+	var pri=[666.00,334.00,1.00,9.00];
+
+	for(var i=0;i<aImgLi.length;i++){
+		aImgLi[i].style.left=i*170+'px';
+		fnTime(aImgLi[i]);
+	}
+
+	function fnTime(li){
+		var oBtn=li.getElementsByTagName('button')[0];
+		var oInp=li.getElementsByTagName('input')[0];
+		var oSpan=li.getElementsByTagName('span')[0];
+		var iNow=null;
+		var iFuture=null;
+		var t=0;
+		var str='';
+
+
+		oBtn.onclick=function(){
+
+			iFuture=new Date(oInp.value);
+			clearInterval(li.timer);
+			li.timer=setInterval(function(){
+				iNow=new Date();
+				t=Math.floor((iFuture-iNow)/1000);
+
+				if ( t >= 0 ) {
+					str = Math.floor(t/86400)+'天'+Math.floor(t%86400/3600)+'时'+Math.floor(t%86400%3600/60)+'分'+t%60+'秒';
+					oSpan.innerHTML = str;
+				} else {
+					clearInterval( li.timer );
+					fnAdd();
+					shake ( li, 'top', 0 ,function(){
+						// oHide.style.display="inline";
+						doMove ( li, 'top', 10,310 );
+						opacity(li,0.1,0.00);
+					})
+				}
+
+			},1000)
+		}
+
+	}
+
+	function fnAdd(){
+		var sum=0;
+
+		aImg[num].style.display="inline";
+		aPriceLi[num].style.display='block';
+		aStrong[num].innerHTML=pri[num];
+		num++;
+
+		for(var i=0;i<aStrong.length;i++){
+			sum+=parseFloat(aStrong[i].innerHTML);
+		}
+		oSpan.innerHTML=sum;
+	}
+
+	function shake ( obj, attr, pos,endFn ) {
+
+		///var pos = parseInt( getStyle(obj, attr) );			// 有隐患的
+
+		var arr = [];			// 20, -20, 18, -18 ..... 0
+		var num = 0;
+		// var timer = null;
+
+		for ( var i=20; i>0; i-=2 ) {
+			arr.push( i, -i );
+		}
+		// console.log(arr);
+		arr.push(0);  //不能是i<=2 因为不能在数组中添加 0 -0;
+
+		clearInterval( obj.shake );
+		obj.shake = setInterval(function (){
+			obj.style[attr] = pos + arr[num] + 'px';
+			num++;
+			if ( num === arr.length ) {
+				clearInterval( obj.shake );
+				endFn && endFn();
+			}
+		}, 50);
+	}
+
+	function opacity(obj,len,target){
+		var opacityNum=1;
+		clearInterval(obj.opacity);
+		obj.opacity=setInterval(function(){
+			opacityNum-=len;
+			obj.style.opacity=opacityNum;
+			// console.log(typeof(opacityNum.toFixed(2)));        //string
+			if(Number(opacityNum.toFixed(2))===target){
+				clearInterval(obj.opacity);
+			}
+		},100)
+	}
+
+	function getStyle( obj, attr ){
+		return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle( obj )[attr];
+	}
+
+	function doMove ( obj, attr, dir, target, endFn ) {   //dir  步长
+		dir = parseInt(getStyle( obj, attr )) < target ? dir : -dir;  // dir 方向在这里解决了
+		clearInterval( obj.timer );
+		obj.timer = setInterval(function () {
+			var speed = parseInt(getStyle( obj, attr )) + dir;
+			if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) {
+				speed = target;
+			}
+			obj.style[attr] = speed + 'px';
+			if ( speed == target ) {
+				clearInterval( obj.timer );
+				/*
+				if ( endFn ) {
+					endFn();
+				}
+				*/
+				endFn && endFn();
+			}
+
+		}, 30);
+	}
+
+	}
+	</script>
+</head>
+<body>
+<div class="wrap">
+	<div id="img">
+		<h2>限购时间</h2>
+		<ul id="hide">
+			<img src="img/xj.png" alt="" class="hide">
+			<img src="img/xj.png" alt="" class="hide">
+			<img src="img/xj.png" alt="" class="hide">
+			<img src="img/xj.png" alt="" class="hide">
+		</ul>
+		<ul id="imgList">
+			<li>
+				<input type="text" value="May 22,2017 20:19:00"><button>确定</button>
+				<p>剩余:<span>00时00分00秒</span></p>
+				<a href="#"><img src="img/1.png" alt=""></a>
+				<p>选择所有与选中游标所在单词相同的单词按住shift键，然后按住鼠标右键向下拖动</p>
+				<span>抢购价:</span><strong>$666.00</strong>
+			</li>
+			<li>
+				<input type="text" value="May 22,2017 20:19:00"><button>确定</button>
+				<p>剩余:<span>00时00分00秒</span></p>
+				<a href="#"><img src="img/2.png" alt=""></a>
+				<p>选择所有与选中游标所在单词相同的单词按住shift键，然后按住鼠标右键向下拖动</p>
+				<span>抢购价:</span><strong>$334.00</strong>
+			</li>
+			<li>
+				<input type="text" value="May 22,2017 20:19:00"><button>确定</button>
+				<p>剩余:<span>00时00分00秒</span></p>
+				<a href="#"><img src="img/3.png" alt=""></a>
+				<p>选择所有与选中游标所在单词相同的单词按住shift键，然后按住鼠标右键向下拖动</p>
+				<span>抢购价:</span><strong>$1.00</strong>
+			</li>
+			<li>
+				<input type="text" value="May 22,2017 20:19:00"><button>确定</button>
+				<p>剩余:<span>00时00分00秒</span></p>
+				<a href="#"><img src="img/4.png" alt=""></a>
+				<p>选择所有与选中游标所在单词相同的单词按住shift键，然后按住鼠标右键向下拖动</p>
+				<span>抢购价:</span><strong>$9.00</strong>
+			</li>
+		</ul>
+	</div>
+	<div id="price" >
+		<div id="title" class="clear">
+			<h2>商品名称</h2>
+			<h2>价钱</h2>
+		</div>
+		<ul id="priceList">
+			<li>
+				<span>鼠标拖拽选择ul内的元素</span>
+				<span><strong>0.00</strong></span>
+				<img src="img/1.png" alt="">
+			</li>
+			<li>
+				<span>鼠标拖拽选择ul内的元素</span>
+				<span><strong>0.00</strong></span>
+				<img src="img/2.png" alt="">
+			</li>
+			<li>
+				<span>鼠标拖拽选择ul内的元素</span>
+				<span><strong>0.00</strong></span>
+				<img src="img/3.png" alt="">
+			</li>
+			<li>
+				<span>鼠标拖拽选择ul内的元素</span>
+				<span><strong>0.00</strong></span>
+				<img src="img/4.png" alt="">
+			</li>
+		</ul>
+		<p>总价:<span>00.00</span>元</p>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟select控件 - 多选</title>
+	<style>
+		li{
+			list-style: none;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrap{
+			width: 300px;
+			margin: 30px auto;
+		}
+		#text{
+			height: 30px;
+			width: 300px;
+			border: 1px #999 solid;
+			line-height: 30px;
+			text-indent: 10px;
+		}
+		ul{
+			height: 30px;
+			width: 300px;
+		}
+		li{
+			line-height: 30px;
+			text-indent: 10px;
+			height: 30px;
+			width: 300px;
+			border: 1px #999 solid;
+			border-top: none;
+		}
+		li:hover{
+			background: #ff0;
+		}
+		ul{
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oDiv=document.getElementById('text');
+			var oUl=document.getElementsByTagName('ul')[0];
+			var aLi=document.getElementsByTagName('li');
+			/*var json={
+				'黑体':
+				'宋体:'
+				'微软雅黑':
+				'新媒体':
+				'那个题':
+			}*/
+
+			/*for(var k=0;k<aLi.length;k++){
+				aLi[k].onselectstrat=function(){   //避免文字被选中    document 也一样不起作用   没起作用
+					return false;
+				}
+			}*/
+
+
+			document.onclick=function(){
+				oUl.style.display='none';
+			}
+
+			oDiv.onclick=function(ev){
+				var ev=ev||event;
+				ev.cancelBubble=true;//阻止document.onclick事件冒泡
+				oUl.style.display='block';
+			}
+
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].flag=false;
+				aLi[i].onclick=function(ev){
+					var ev=ev||event;
+					// console.log(ev.shiftKey);
+					var str='';
+
+					if(ev.shiftKey){
+						ev.cancelBubble=true;//阻止document.onclick事件冒泡
+
+						this.flag=!this.flag;
+						for(var i=0;i<aLi.length;i++){
+							if(aLi[i].flag){
+								str+=aLi[i].innerHTML+' ';
+								aLi[i].style.background='#ff0';
+							}else{
+								aLi[i].style.background='#fff';
+							}
+						}
+
+					}else{
+						str=this.innerHTML;
+					}
+
+					oDiv.innerHTML=str;
+
+				}
+
+			}
+
+		}
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<div id="text">按住shift多选</div>
+	<ul>
+		<!-- <li>黑体</li>
+		<li>宋体</li>
+		<li>微软雅黑</li>
+		<li>新媒体</li>
+		<li>那个题</li> -->
+
+		<li onselectstart="return false;">黑体</li>
+		<li onselectstart="return false;">宋体</li>
+		<li onselectstart="return false;">微软雅黑</li>
+		<li onselectstart="return false;">新媒体</li>
+		<li onselectstart="return false;">那个题</li>
+	</ul>
+</div>
+</body>
+</html>

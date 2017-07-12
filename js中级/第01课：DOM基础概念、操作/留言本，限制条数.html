@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>留言本，限制条数</title>
+	<script>
+		window.onload=function(){
+			var aInp=document.getElementsByTagName('input');
+			var oUl=document.getElementsByTagName('ul')[0];
+			// var aLi=document.getElementsByTagName('li');
+			n = 5; //此处可以设置保留条目的数量
+			aInp[1].onclick=function(){
+				if (!aInp[0].value){          //如果是空的 则啥也不执行 ()里面是true 或false
+					return;
+				}
+
+				var oLi = document.createElement('li');
+				oLi.innerHTML=aInp[0].value;
+				aInp[0].value='';
+
+				if ( oUl.children[0] ) {
+					oUl.insertBefore( oLi, oUl.children[0] );
+				} else {
+					oUl.appendChild( oLi );
+				}
+
+				/*if(aLi.length==6){
+					oUl.removeChild( oUl.children[5] );
+				}*/
+
+				if (oUl.children[n]){
+					oUl.removeChild(oUl.children[n]);
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<input type="text">
+<input type="button" value="留言">
+<ul id="list"></ul>
+</body>
+</html>

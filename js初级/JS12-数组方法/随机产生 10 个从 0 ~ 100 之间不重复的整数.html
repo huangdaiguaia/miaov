@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 随机产生 10 个从 0 ~ 100 之间不重复的整数</title>
+	<script>
+		window.onload=function(){
+			var arr=[];
+
+			/*for(;arr.length<10;){
+				arr.push(Math.round( Math.random()*10 ) );
+
+				for ( var i=0; i<arr.length; i++ ) {
+					for ( var j=i+1; j<arr.length; j++ ) {
+						if ( arr[i] == arr[j] ) {
+							arr.splice( j, 1 );
+							j--;
+						}
+					}
+				}
+
+			}*/
+			while(arr.length<10){
+				arr.push(Math.round( Math.random()*100) );
+
+				for ( var i=0; i<arr.length; i++ ) {
+					for ( var j=i+1; j<arr.length; j++ ) {
+						if ( arr[i] == arr[j] ) {
+							arr.splice( j, 1 );
+							j--;
+						}
+					}
+				}
+			}
+			console.log(arr);
+
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

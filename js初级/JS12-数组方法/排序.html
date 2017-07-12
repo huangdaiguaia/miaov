@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>排序</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		img{
+			width: 280px;
+			height: 180px;
+		}
+		.wrap{
+			width: 1300px;
+			height: 650px;
+			border: 1px #f1f1f1 solid;
+			margin: 10px auto;
+			background: #f1f1f1;
+		}
+		#title{
+			/*width: 1300px;*/
+			padding: 20px 495px;
+			text-align: center;
+		}
+		#title ul{
+			float: left;
+			margin: 20px;
+		}
+		#title ul li{
+			width: 115px;
+			height: 35px;
+			background: #009999;
+			/*float: left;*/
+			/*margin: 20px;*/
+			line-height: 35px;
+		}
+		#title #first li:nth-child(2){
+			display: none;
+		}
+		.clear:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		#box li{
+			float: left;
+			width: 280px;
+			height: 240px;
+			border: 1px #ccc solid;
+			padding: 10px;
+			background: #fff;
+		}
+		#box{
+			margin: 0px 45px;
+		}
+		#box span{
+			width: 300px;
+			display: block;
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oTit=document.getElementById('title');
+			var oFirst=document.getElementById('first');
+			var aFirstLi=oFirst.getElementsByTagName('li');
+			var oSec=document.getElementById('second');
+			var oBox=document.getElementById('box');
+			var aSpan=oBox.getElementsByTagName('span');
+			var aBoxLi=oBox.getElementsByTagName('li');
+			var flag=true;
+
+			var arr=[];
+
+
+			for(var i=0;i<aBoxLi.length;i++){
+				arr.push(aBoxLi[i]);
+			}
+
+			oFirst.onclick=function(){
+				if(flag){
+					aFirstLi[0].style.display='none';
+					aFirstLi[1].style.display="block";
+				}else{
+					aFirstLi[0].style.display='block';
+					aFirstLi[1].style.display="none";
+				}
+				flag=!flag;
+
+				arr.reverse();
+				order()
+			}
+
+			oSec.onclick=function(){
+				arr.sort(function(a, b){
+					return Math.random() - 0.5;
+				})
+
+				order()
+			}
+
+			function order(){
+				var str='';
+				for(var j=0;j<arr.length;j++){
+					str+='<li>' + arr[j].innerHTML + '</li>';
+				}
+				oBox.innerHTML=str;
+			}
+		}
+	</script>
+</head>
+<body>
+<div class="wrap">
+	<div id="title" class="clear">
+		<ul id="first">
+			<li>从大到小</li>
+			<li>从小到大</li>
+		</ul>
+		<ul id="second">
+			<li>打乱顺序</li>
+		</ul>
+	</div>
+	<ul id="box" class="clear">
+		<li>
+			<img src="img/1.jpg" alt="">
+			<span>1-温馨办公</span>
+		</li>
+		<li>
+			<img src="img/2.jpg" alt="">
+			<span>2-温馨办公</span>
+		</li>
+		<li>
+			<img src="img/3.jpg" alt="">
+			<span>3-温馨办公</span>
+		</li>
+		<li>
+			<img src="img/4.jpg" alt="">
+			<span>4-温馨办公</span>
+		</li>
+		<li>
+			<img src="img/5.jpg" alt="">
+			<span>5-温馨办公</span>
+		</li>
+		<li>
+			<img src="img/6.jpg" alt="">
+			<span>6-温馨办公</span>
+		</li>
+		<li>
+			<img src="img/7.jpg" alt="">
+			<span>7-温馨办公</span>
+		</li>
+		<li>
+			<img src="img/8.jpg" alt="">
+			<span>8-温馨办公</span>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#div1{
+			width: 500px;
+			height: 500px;
+			margin: 10px auto;
+		}
+		.active{
+			background: #0ff;
+		}
+		#div1 div{
+			width: 200px;
+			height: 200px;
+			border: 1px solid;
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload = function(){                             //函数
+			var oDiv = document.getElementById('div1');
+			var aInput = oDiv.getElementsByTagName('input');
+			var aDiv = oDiv.getElementsByTagName('div');
+
+			for(var i=0; i<aInput.length; i++){
+				aInput[i].index = i;
+				aInput[i].onclick = function(){                  //这个是在onload 中套的一个函数
+					for(var i=0; i<aInput.length; i++){
+						aInput[i].className = '';
+						aDiv[i].style.display = 'none';
+					}
+					this.className = 'active';
+					aDiv[this.index].style.display = 'block';
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="div1">
+	<input class="active" type="button" value="教育">
+	<input type="button" value="政治">
+	<input type="button" value="经济">
+	<div style="display:block">宿主对象</div>
+	<div>宿主:生活的环境</div>
+	<div>js:浏览器提供的对象</div>
+</div>
+</body>
+</html>

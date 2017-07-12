@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义字体形状</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#wrap{
+			width: 500px;
+			height: 400px;
+			border: 1px #999 solid;
+			margin: 20px auto;
+		}
+		#top{
+			height: 180px;
+			padding: 10px;
+			border-bottom: 1px solid #999;
+		}
+		select{
+			/*width: 100px;*/
+			height: 25px;
+			display: block;
+			margin: 10px 10px;
+		}
+		textarea{
+			height: 90px;
+			width: 478px;
+			padding: 10px
+		}
+		input{
+			float: right;
+			margin: 7px;
+		}
+		/* img{
+			width: 30px;
+			height: 30px;
+		} */
+		#top li{
+			float: left;
+			/*background:  no-repeat  center center;*/
+			margin-right: 5px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oTop=document.getElementById('top');
+			var oInp=document.getElementsByTagName('input')[0];
+			var oText=document.getElementsByTagName('textarea')[0];
+			var oSelect=document.getElementsByTagName('select')[0];
+			var aLi=document.getElementsByTagName('li');
+
+			var json={
+				'shuai': 'img/shuai.gif',
+				'love': 'img/heart.gif',
+				'knife': 'img/knife.gif',
+				'jiong': 'img/jiong.gif'
+			}
+
+
+			oInp.onclick=function(){
+				var str=oText.value;
+				if(str==''){
+					alert("请输入内容");
+				}else if(oSelect.value=='default'){
+					oTop.innerHTML+=str+'<br>';
+					oText.value='';
+				}else{
+					for(attr in json){
+
+						if(oSelect.value==attr){
+							var arr=str.split('');
+							var str2='';
+							for(var i=0; i<arr.length; i++) {
+								str2+='<li><img src = "' + json[attr] + '"><span>'+arr[i]+'</span></li>';
+								// str2 += '<div><img src = "' + url + '"><span>' + arr[i] + '<span></div>'
+							}
+							oTop.innerHTML += str2 + '<br/>';
+							/*for(var j=0;j<aLi.length;j++){
+								aLi[j].style.backgroundImage='url('+json[attr]+')';
+							}*/
+							oText.value = '';
+						}
+
+					}
+				}
+
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="wrap">
+<ul id="top">
+	<!-- <li>
+		<span>你</span>
+	</li>
+	<li>
+		<span>你</span>
+	</li> -->
+</ul>
+<div id="bottom">
+<select name="" id="">
+	<option value="shuai">衰人字体</option>
+	<option value="love">表白字体</option>
+	<option value="knife">砍刀字体</option>
+	<option value="jiong">囧人字体</option>
+	<option value="default" selected>默认字体</option>
+</select>
+<textarea name="" id="">
+
+</textarea>
+<input type="button" value="发送">
+</div>
+</div>
+</body>
+</html>

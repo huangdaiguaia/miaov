@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>页面左右两侧居中广告</title>
+	<style>
+		div{
+			width: 40px;
+			height: 100px;
+			background: #ff0;
+		}
+		.div1{
+			position: fixed;
+			top:50%;
+			left: 0;
+		}
+		.div2{
+			position: fixed;
+			top:50%;
+			right: 0;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var aDiv=document.getElementsByTagName('div');
+			var clientHeight =document.documentElement.clientHeight;
+			aDiv[0].style.top=(clientHeight*0.5-50)+'px';
+			aDiv[1].style.top=(clientHeight*0.5-50)+'px';
+		}
+	</script>
+</head>
+<body>
+	<!-- <div class="div"> -->
+		<ul class="nav">
+			<li class="nav-item1"><a href="">首页</a></li>
+			<li class="nav-item2"><a href="">公司简介</a></li>
+			<li class="nav-item3"><a href="">公司动态</a></li>
+			<li class="nav-item4"><a href="">关于我们</a></li>
+			<li class="nav-item5"><a href="">联系我们</a></li>
+			<li class="nav-item1"><a href="">首页</a></li>
+			<li class="nav-item2"><a href="">公司简介</a></li>
+			<li class="nav-item3"><a href="">公司动态</a></li>
+			<li class="nav-item4"><a href="">关于我们</a></li>
+			<li class="nav-item5"><a href="">联系我们</a></li>
+			<li class="nav-item1"><a href="">首页</a></li>
+			<li class="nav-item2"><a href="">公司简介</a></li>
+			<li class="nav-item3"><a href="">公司动态</a></li>
+			<li class="nav-item4"><a href="">关于我们</a></li>
+			<li class="nav-item5"><a href="">联系我们</a></li>
+			<li class="nav-item1"><a href="">首页</a></li>
+			<li class="nav-item2"><a href="">公司简介</a></li>
+			<li class="nav-item3"><a href="">公司动态</a></li>
+			<li class="nav-item4"><a href="">关于我们</a></li>
+			<li class="nav-item5"><a href="">联系我们</a></li>
+			<li class="nav-item1"><a href="">首页</a></li>
+			<li class="nav-item2"><a href="">公司简介</a></li>
+			<li class="nav-item3"><a href="">公司动态</a></li>
+			<li class="nav-item4"><a href="">关于我们</a></li>
+			<li class="nav-item5"><a href="">联系我们</a></li>
+			<li class="nav-item1"><a href="">首页</a></li>
+			<li class="nav-item2"><a href="">公司简介</a></li>
+			<li class="nav-item3"><a href="">公司动态</a></li>
+			<li class="nav-item4"><a href="">关于我们</a></li>
+			<li class="nav-item5"><a href="">联系我们</a></li>
+			<li class="nav-item1"><a href="">首页</a></li>
+			<li class="nav-item2"><a href="">公司简介</a></li>
+			<li class="nav-item3"><a href="">公司动态</a></li>
+			<li class="nav-item4"><a href="">关于我们</a></li>
+			<li class="nav-item5"><a href="">联系我们</a></li>
+			<li class="nav-item1"><a href="">首页</a></li>
+			<li class="nav-item2"><a href="">公司简介</a></li>
+			<li class="nav-item3"><a href="">公司动态</a></li>
+			<li class="nav-item4"><a href="">关于我们</a></li>
+			<li class="nav-item5"><a href="">联系我们</a></li>
+		</ul>
+	<!-- </div> -->
+	<div class="div1"></div>
+	<div class="div2"></div>
+</body>
+</html>

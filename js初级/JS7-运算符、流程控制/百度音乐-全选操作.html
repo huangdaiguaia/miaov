@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度音乐多次触发</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		li{
+			list-style: none;
+			height: 30px;
+			width: 480px;
+			line-height: 30px;
+			background: #DBFAFA;
+			/*border-bottom: 1px #ccc solid;*/
+			padding: 0 10px;
+			margin-bottom: 2px;
+		}
+		div{
+			width: 500px;
+			margin: 20px auto;
+			border: 1px #ccc solid;
+		}
+		span{
+			width: 200px;
+			display: inline-block;
+		}
+		#all{
+			background: #fff;
+			border-top: 1px solid #ccc;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var aLi=document.getElementsByTagName('li');
+			var aInput=document.getElementsByTagName('input');
+			var aColor=["#DBFAFA","#fff"];
+			var j=1;
+
+			for(var i=0;i<aLi.length-1;i++){
+				aLi[i].index=i;
+				aLi[i].style.background=aColor[i%aColor.length];
+				aLi[i].onmouseover=function(){
+					fnTab(this.index,0);
+				}
+
+				aLi[i].onmouseout = function (e) {
+				     if (!e) e = window.event;
+				     var reltg = e.relatedTarget ? e.relatedTarget : e.toElement;
+				     while (reltg && reltg != this) reltg = reltg.parentNode;
+				     if (reltg != this) {
+				        // 这里可以编写 onmouseenter 事件的处理代码
+				       	console.log(j%2);
+				       	if(aInput[this.index].checked){
+				       		j=0;
+				       	}else{
+				       		j=1;
+				       	}
+        					fnTab(this.index,j%2);
+        					j=1;
+				     }
+				}
+
+				aInput[i].onclick=function(){
+
+					j=0;
+					//  js当中mouseover和mouseout多次触发(非冒泡)
+
+					// 不行 因为鼠标划走的时候有会出发onmouseout事件 变回原来的样子
+					/*if(this.checked){
+						this.style.background="#ccc";
+					}else{
+						this.style.background=aColor[index%aColor.length];
+					}*/
+				}
+			}
+
+			aInput[aInput.length-1].onclick=function(){
+				for(var i=0;i<aLi.length-1;i++){
+					aInput[i].checked=!aInput[i].checked;
+					// aInput[i].checked=true;
+					if(aInput[i].checked){
+						aLi[i].style.background="#ccc";
+					}else{
+						aLi[i].style.background=aColor[i%aColor.length];
+					}
+				}
+			}
+
+
+			function fnTab(index,jnum){
+					// aLi[i].style.background=aColor[this.index%aColor.length]:"#ccc";
+					//颜色值似乎不能做判断
+					if(jnum==0){
+						aLi[index].style.background="#ccc";
+					}else{
+						aLi[index].style.background=aColor[index%aColor.length];
+					}
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>
+				<input type="checkbox">
+				<span>私奔</span>
+				<span>梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span>回来</span>
+				<span>梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span>爱要有你才完美</span>
+				<span>梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span>我爱你中国</span>
+				<span>梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span>北京北京</span>
+				<span>梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">
+				<span>花火</span>
+				<span>梁博</span>
+			</li>
+			<li id="all">
+				<input type="checkbox">
+				<span>全选</span>
+			</li>
+		</ul>
+</body>
+</html>

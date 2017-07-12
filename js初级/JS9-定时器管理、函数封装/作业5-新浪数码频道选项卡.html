@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		img{
+			width: 190px;
+			height: 150px;
+			border:1px #999 solid;
+		}
+		#box{
+			width: 800px;
+			height: 350px;
+			/*background: #ccc;*/
+			margin: 10px auto;
+			border: 1px #000 solid;
+		}
+		/*.picBox{
+
+		}*/
+		.title{
+			height: 40px;
+			width: 800px;
+			padding: 20px;
+		}
+		h2{
+			float: left;
+			font-size: 20px;
+			font-weight: normal;
+			border: 1px #087B00 solid;
+			height: 40px;
+			line-height: 40px;
+			width: 70px;
+			text-align: center;
+			background: url(img/iconb.png) no-repeat 3px center;
+			color: #000;
+		}
+		h2.active{
+			background: #087B00;
+			color: #fff;
+		}
+		/*h2.icon{
+			width: 9px;
+			height: 5px;
+		}*/
+		#bL{
+			width: 180px;
+			height: 270px;
+			float: left;
+			padding: 0 10px;
+		}
+		#bL img{
+			width: 180px;
+			height: 200px;
+			line-height: 270px;
+			display: none;
+		}
+		.bR{
+			width: 600px;
+			height: 270px;
+			float: left;
+			position: relative;
+			overflow: hidden;
+		}
+		#imgBox{
+			width: 1800px;
+			height: 270px;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		#imgBox div{
+			display: none;
+		}
+		/* #imgBox ul{
+			display: none;
+		} */
+		.bR li{
+			width: 200px;
+			float: left;
+		}
+		#btn{
+			position: absolute;
+			bottom: 10px;
+			left:200px;
+		}
+		#btn a{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			border-radius: 20px;
+			background: #ccc;
+			text-align: center;
+			line-height: 20px;
+			text-decoration: none;
+			color:#000;
+		}
+		#btn a.active{
+			background: #ff0;
+		}
+		#btn a.icon{
+			width: 13px;
+			height: 13px;
+			margin: 0 5px;
+		}
+		#btn a.i1{
+			background: url(img/iconl.png) no-repeat ;
+		}
+		#btn a.i2{
+			background: url(img/iconr.png) no-repeat ;
+		}
+		span{
+			font-size: 14px;
+			text-align: center;
+			width: 200px;
+			display: inline-block;
+			color:#00f;
+		}
+		p{
+			font-size: 16px;
+			color: #555;
+			padding: 10px;
+		}
+	</style>
+	<script src="miaov.js"></script>
+	<script>
+		window.onload=function(){
+			var oBl=document.getElementById('bL');
+			var oImgBox=document.getElementById('imgBox');
+			var aImg=oBl.getElementsByTagName('img');
+			var aDiv=oImgBox.getElementsByTagName('div');
+			var oBtn=document.getElementById('btn');
+			var aA=oBtn.getElementsByTagName('a');
+
+			var aH2=document.getElementsByTagName('h2');
+
+			var num=0;
+			var target=0;
+			var timer=null;
+			var numA=1;
+
+
+
+			function Initialize(){
+				for(var i=0;i<aH2.length;i++){
+					aImg[i].style.display="none";
+					aDiv[i].style.display="none";
+					aH2[i].className="";
+				}
+				aImg[num].style.display="inline";
+				aDiv[num].style.display="block";
+				aA[numA].className="active";
+				aH2[num].className="active";
+			}
+			Initialize();
+
+			aH2[1].onclick=function(){
+				if(num==1){
+					Initialize();
+				}else{
+					num++;
+					Initialize();
+				}
+			}
+			aH2[0].onclick=function(){
+				if(num==0){
+					Initialize();
+				}else{
+					num--;
+					Initialize();
+				}
+			}
+
+			function tab(tar,tarMax,dir,dirMax){
+				for(var i=1;i<aA.length-1;i++){
+					aA[i].className="";
+				}
+				numA+=dir;
+				if(numA==dirMax){
+					numA=dirMax-dir;
+				}
+				aA[numA].className="active";
+
+				target+=tar;
+				doMove ( oImgBox, "left", 30, target );
+				if(target==tarMax||target==tarMax+tar){
+					target=tarMax;
+					doMove ( oImgBox, "left", 30, target );
+				}
+			}
+
+			aA[4].onclick=function(){
+				tab( -600,-1200,1,4);
+			}
+
+			aA[0].onclick=function(){
+				tab( 600,0,-1,0);
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="box">
+	<!-- <div class="picBox"> -->
+		<div class="title">
+			<h2 class="icon">新品</h2>
+			<h2 class="icon">极客</h2>
+		</div>
+		<div class="first">
+			<div class="bottom">
+				<div id="bL">
+					<img src="img/crab.png" alt="">
+					<img src="img/squirrel.png" alt="">
+				</div>
+				<div class="bR">
+					<div id="imgBox">
+						<div>
+							<ul>
+								<li>
+								<img src="img/bird.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/black-cat.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/bulldog.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+							</ul>
+							<ul>
+								<li>
+								<img src="img/bunny.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/cardinal.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/cat.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+							</ul>
+							<ul>
+								<li>
+								<img src="img/chicken.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/chihuahua.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/cow.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+							</ul>
+						</div>
+						<div>
+							<ul>
+								<li>
+								<img src="img/whale.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/turtle.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/turkey.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+							</ul>
+							<ul>
+								<li>
+								<img src="img/tuna.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/tropical-fish.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/cat.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+							</ul>
+							<ul>
+								<li>
+								<img src="img/chicken.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/chihuahua.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+								<li>
+								<img src="img/cow.png" alt="">
+								<span>踩碎了迷茫走过时光</span>
+								<p>块级元素独占一行,宽度自动填满其父元素的宽度 </p>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div id="btn">
+						<a href="#" class="icon i1"></a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#">3</a>
+						<a href="#" class="icon i2"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="second">
+
+		</div>
+	<!-- </div> -->
+</div>
+</body>
+</html>

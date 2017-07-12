@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>右键菜单淡入淡出</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#menu{
+			width: 100px;
+			border: 1px #333 solid;
+			display: none;
+			position: absolute;
+		}
+		li{
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			/*color: #000;*/
+			border: 1px solid;
+		}
+		a{
+			color: #222;
+			text-decoration: none;
+			display: block;
+		}
+		a:hover{
+			background: #000;
+			color: #fff;
+		}
+	</style>
+	<script src='move.js'></script>
+	<script>
+		window.onload=function(){
+			var oMenu=document.getElementById('menu');
+			var aLi=document.getElementsByTagName('li');
+
+			document.oncontextmenu=function(ev){
+				ev=ev||event;
+				var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+				var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+
+				oMenu.style.left = scrollLeft + ev.clientX + 'px';
+				oMenu.style.top = scrollTop + ev.clientY + 'px';
+				oMenu.style.opacity=0;
+				oMenu.style.display='block';
+
+				move(oMenu,{
+					opacity:100
+				})
+
+				return false; //阻止默认右键菜单
+			}
+
+			document.onclick=function(){
+				move(oMenu,{
+					opacity:0
+				},function(){
+					oMenu.style.display='block';
+				})
+			}
+		}
+	</script>
+</head>
+<body>
+<ul id="menu">
+	<li><a href="#">剪切</a></li>
+	<li><a href="#">黏贴</a></li>
+	<li><a href="#">添加</a></li>
+	<li><a href="#">删除</a></li>
+	<li><a href="#">后退</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>模拟滚动条扩展</title>
+<style>
+#div1 {width: 30px; height: 500px; background: black; position: absolute; left: 10px; top: 10px;}
+#div2 {
+	width: 30px;
+	/*height: 30px;*/
+	background: red;
+	position: absolute;
+	left: 0; top: 0;
+}
+#div3 {width: 498px; height: 498px; border: 1px solid green; position: absolute; left: 50px; top: 10px;}
+#div4 { position: absolute; left: 0; top: 0;}
+</style>
+<script>
+window.onload = function() {
+
+	var oDiv1 = document.getElementById('div1');
+	var oDiv2 = document.getElementById('div2');
+	var oDiv3 = document.getElementById('div3');
+	var oDiv4 = document.getElementById('div4');
+
+	var scrollScall=oDiv3.clientHeight / oDiv4.offsetHeight > 1 ? 1 : oDiv3.clientHeight / oDiv4.offsetHeight;
+	var scrollHeight=scrollScall*oDiv1.offsetHeight;
+	//var scrollHeight=(500*500)/oDiv4.offsetHeight;          //--------------
+	//console.log(scrollHeight);
+	// oDiv2.offsetHeight=scrollHeight;
+	oDiv2.style.height=scrollHeight+'px';
+	var iMaxTop = oDiv1.offsetHeight -scrollHeight;
+
+	oDiv2.onmousedown = function(ev) {
+
+		var ev = ev || event;
+
+		var disY = ev.clientY - this.offsetTop;
+
+		document.onmousemove = function(ev) {
+
+			var ev = ev || event;
+
+			var T = ev.clientY - disY;
+
+			if ( T < 0 ) {
+				T = 0;
+			} else if ( T > iMaxTop ) {
+				T = iMaxTop;
+			}
+
+			oDiv2.style.top = T + 'px';
+
+
+			// div4
+			var iScale = T / iMaxTop;
+
+			oDiv4.style.top = (oDiv3.clientHeight - oDiv4.offsetHeight) * iScale + 'px';
+
+		}
+
+		document.onmouseup = function() {
+
+			document.onmousemove = document.onmouseup = null;
+
+		}
+
+		return false;
+
+	}
+
+}
+</script>
+</head>
+
+<body>
+	 <div id="div1">
+    		<div id="div2"></div>
+      </div>
+
+     <div id="div3">
+    		<div id="div4">
+		<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+        	<p>从光标处复制至一个单子/单词的末尾，不包括空格</p>
+       	 </div>
+    	</div>
+</body>
+</html>

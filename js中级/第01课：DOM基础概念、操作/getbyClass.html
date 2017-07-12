@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>getbyClass</title>
+	<script>
+		window.onload=function(){
+			var oUL=document.getElementById('ul1');
+			var aBox=getbyClass(oUL,'box');
+
+			for(var i=0;i<aBox.length;i++){
+				aBox[i].style.backgroundColor='#c00';
+			}
+		}
+
+		function getbyClass(oParent,sClass){
+			var aEle=oParent.getElementsByTagName('*');
+			var aResult=[];
+
+			for(var i=0;i<aEle.length;i++){
+				if(aEle[i].className==sClass){
+					aResult.push(aEle[i]);
+				}
+			}
+			return aResult;
+		}
+	</script>
+</head>
+<body>
+	<ul id="ul1">
+		<li></li>
+		<li class="box"></li>
+		<li class="box active"></li>
+		<li class="box"></li>
+		<li></li>
+		<li class="box"></li>
+	</ul>
+</body>
+</html>
